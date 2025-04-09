@@ -4,12 +4,11 @@ import Navigation from "../components/Navigation";
 
 import "../styles/comp.css";
 
-const Head = () => {
+const Head = ({ width }) => {
   return (
     <>
       <header>
         <img src={logo} alt="Company Logo" />
-        <Navigation />
         <Button role={"outlined"} text={"Demo"} />
       </header>
     </>

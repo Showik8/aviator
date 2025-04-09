@@ -50,16 +50,15 @@ header {
   gap: 50px;
   background-color: rgba(9, 34, 52, 0.8);
 
-  div {
+  .divInHome {
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
     width: 500px;
     height: 550px;
-  }
 
-  pre {
+    pre {
     color: #e8e8e8;
     display: flex;
     flex-direction: column;
@@ -81,6 +80,42 @@ header {
     color: white;
     font-size: 16px;
   }
+  }
+
+  .divInHomeResp{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 500px;
+    height: 550px;
+
+      pre {
+    color: #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 50px;
+    text-wrap: wrap;
+    font-weight: 600;
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 3rem;
+    color: hsl(3, 58%, 47%);
+  }
+  p {
+    text-align: center;
+    padding-right: 1%;
+    overflow-wrap: normal;
+    word-break: normal;
+    color: white;
+    font-size: 16px;
+  }
+  }
+
+  
 
   img {
     width: 600px;
@@ -136,6 +171,7 @@ header {
   .cards {
     display: inline-flex;
     justify-content: space-around;
+    gap:2rem;
     width: 60%;
   }
 

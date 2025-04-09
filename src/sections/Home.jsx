@@ -3,10 +3,11 @@ import Button from "../components/Button";
 
 import "../styles/comp.css";
 
-const Home = () => {
+const Home = ({width}) => {
+   
   return (
     <section id="home">
-      <div>
+      <div className={width >= 1440 ? "divInHome" : "divInHomeResp"}>
         <pre>
           <span>Aviator Studio –</span>
           The Original Crash Game Experience
@@ -20,7 +21,7 @@ const Home = () => {
         </p>
         <Button text={"Contact Us"} role={"primary"} />
       </div>
-      <img src={plane} alt="" />
+      {width >= 1440 ? <img src={plane} alt="" /> : null}
     </section>
   );
 };
