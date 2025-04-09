@@ -1,7 +1,7 @@
 import plane from "../assets/plane.png";
-import Button from "./Button";
+import Button from "../components/Button";
 
-import '../styles/comp.css'
+import "../styles/comp.css";
 
 const Home = () => {
   return (

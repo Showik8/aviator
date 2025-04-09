@@ -9,10 +9,13 @@ const Navigation = () => {
     { text: "FAQ", href: "#faq" },
   ];
 
-  const [activeLink, setActiveLink] = useState(null); // Store the href of the active link
+  const [activeLink, setActiveLink] = useState(null); 
 
   const handleActivation = (href) => {
-    setActiveLink(href); // Update the activeLink state with the clicked link's href
+    setActiveLink(href); 
+    setTimeout(() => {
+      setActiveLink(null)
+    }, 4000);
   };
 
   return (

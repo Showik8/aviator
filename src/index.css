@@ -4,6 +4,10 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+html{
+  overflow-x:hidden;
+  scroll-behavior: smooth; 
+}
 
 #root{
   width: 100%;

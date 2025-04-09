@@ -1,12 +1,17 @@
+section {
+  height: 800px;
+}
+
 /* Header Style  */
 header {
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   padding: 1rem;
   background-color: rgba(9, 34, 52, 0.8);
   backdrop-filter: blur(10px);
-  position: sticky;
   top: 0;
 
   ul {
@@ -22,9 +27,10 @@ header {
     font-family: "Helvetica-regular";
     font-size: 18px;
     transition: transform 0.5s ease-in-out;
+    font-family:  Helvetica, system-ui, Arial, sans-serif;
   }
 
-  .activatedList{
+  .activatedList {
     color: hsl(3, 58%, 47%);
     transform: scale(1.2);
   }
@@ -32,9 +38,6 @@ header {
   .list:hover {
     color: hsl(3, 58%, 47%);
   }
-
-
- 
 }
 
 /* Home Page */
@@ -43,10 +46,9 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding:  5% 0%;
+  padding: 5% 0%;
   gap: 50px;
   background-color: rgba(9, 34, 52, 0.8);
-  
 
   div {
     display: inline-flex;
@@ -74,13 +76,11 @@ header {
   }
   p {
     padding-right: 1%;
-    overflow-wrap:normal;
+    overflow-wrap: normal;
     word-break: normal;
     color: white;
     font-size: 16px;
   }
-
-  
 
   img {
     width: 600px;
@@ -91,5 +91,75 @@ header {
 
   img:hover {
     transform: scale(1.05);
+  }
+}
+
+#about {
+  background-color: #1e293b; 
+  background-image: radial-gradient(
+      circle at top left,
+      rgba(255, 0, 0, 0.1) 20%,
+      rgba(255, 0, 0, 0) 60%
+    ),
+    radial-gradient(
+        circle at bottom right,
+        rgba(0, 0, 255, 0.08) 10%,
+        rgba(102, 33, 15, 0.08) 10%,
+      )
+      radial-gradient(
+        circle at bottom right,
+         rgba(102, 33, 15, 0.08) 10%,
+        rgba(0, 0, 255, 0.08) 10%,
+        rgba(0, 0, 255, 0) 50%
+      );
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+
+  pre {
+    color: #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 50px;
+    text-wrap: wrap;
+    font-weight: 600;
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 3rem;
+    color: hsl(3, 58%, 47%);
+  }
+
+  .cards {
+    display: inline-flex;
+    justify-content: space-around;
+    width: 60%;
+  }
+
+  .card {
+    background: linear-gradient(160deg, #ffffff18, #2b313d);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1rem;
+    gap: 2rem;
+    height: 250px;
+    padding: 2rem;
+    width: 250px;
+
+    .conceptSpan {
+      color: white;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    img {
+      height: 70px;
+      width: 70px;
+    }
   }
 }
