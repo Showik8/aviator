@@ -9,6 +9,7 @@ const Head = ({ width }) => {
     <>
       <header>
         <img src={logo} alt="Company Logo" />
+        <Navigation/>
         <Button role={"outlined"} text={"Demo"} />
       </header>
     </>

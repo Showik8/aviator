@@ -1,13 +1,13 @@
 {
-  "homepage": "http://Showik8.github.io/aviator",
+  "homepage": "http://showik8.github.io/aviator",
   "name": "aviator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
