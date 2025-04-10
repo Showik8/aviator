@@ -21,7 +21,6 @@ header
     text-decoration: none
     color: white
     cursor: pointer
-    font-family: "Helvetica-regular"
     font-size: 18px
     transition: transform 0.5s ease-in-out
     font-family: Helvetica, system-ui, Arial, sans-serif
@@ -32,6 +31,28 @@ header
 
   .list:hover
     color: hsl(3, 58%, 47%)
+
+.subHeader
+  display: flex
+  flex-direction: column
+  padding: 1rem 0
+
+  div
+    display: inline-flex
+    width: 100%
+    justify-content: space-between
+    padding: 2%
+
+  nav
+    display: inline-flex
+    background-color: #23303ecc
+    justify-content: center
+    align-items: center
+    width: 100%
+    padding: 1rem
+
+  .list
+    font-size: 14px
 
 #home
   display: flex
@@ -258,6 +279,10 @@ header
       width: 400px
 
 @media (max-width: 800px)
+
+  #home
+      margin-top: 100px
+    
   .cards
     width: 80%
     flex-direction: column
@@ -319,5 +344,5 @@ header
     & .reasonCards
       .reasonSpan
         text-align: center
-        font-size: 1px
+        font-size: 10px
         color: white
