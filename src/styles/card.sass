@@ -1,0 +1,46 @@
+$card-bg-gradient-start: #ffffff18
+$card-bg-gradient-end: #2b313d
+$card-border-radius: 1rem
+$concept-img-size: 70px
+$concept-span-color: white
+$concept-span-font-size: 18px
+
+.cards
+  display: inline-flex
+  justify-content: space-around
+  gap: 2rem
+  margin-top: 50px
+
+.card
+  background: linear-gradient(160deg, $card-bg-gradient-start, $card-bg-gradient-end)
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  border-radius: $card-border-radius
+  gap: 2rem
+  height: 250px
+  padding: 2rem
+  width: 250px
+
+.conceptImg
+  height: $concept-img-size
+  width: $concept-img-size
+
+.conceptSpan
+  color: $concept-span-color
+  font-size: $concept-span-font-size
+  text-align: center
+
+@media (max-width: 900px)
+  .card
+    padding: 0.5rem
+    justify-content: center
+
+  .conceptSpan
+    font-size: 12px
+
+@media (max-width: 600px)
+  .cards
+    flex-direction: column
+    height: fit-content

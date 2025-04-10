@@ -2,7 +2,8 @@ import logo from "../assets/logo.png";
 import Button from "../components/Button";
 import Navigation from "../components/Navigation";
 
-import "../styles/comp.css";
+import "../styles/component.sass";
+
 
 const Head = ({ width }) => {
   return (

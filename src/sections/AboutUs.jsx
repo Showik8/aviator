@@ -1,9 +1,11 @@
-import '../styles/comp.css'
 import arrow from '../assets/arrow.png'
 import dollar from "../assets/dollar.png";
 import rocket from "../assets/rocket.png";
 import ConceptCard from '../components/ConceptCards'
 import phone from '../assets/phones.png'
+
+import "../styles/component.sass";
+
 
 const AboutUs = () =>{
     const cards = [

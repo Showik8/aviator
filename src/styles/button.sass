@@ -1,0 +1,33 @@
+$primary-color: hsl(3, 58%, 47%)
+$primary-color-darker: hsl(3, 58%, 34%)
+$border-radius: 30px
+$white: white
+
+.outlined
+  padding: 1rem 2.5rem
+  border-radius: $border-radius
+  color: $white
+  background-color: initial
+  border: 1px solid $white
+
+  &:hover
+    border-color: $primary-color
+
+.primary
+  background-color: $primary-color
+  padding: 1.4rem 5rem
+  border-radius: $border-radius
+  color: $white
+  cursor: pointer
+  border: none
+  outline: none
+  font-weight: 600
+  transition: padding 0.3s ease, background-color 0.2s ease, transform 0.2s ease-in-out
+
+  &:hover
+    background-color: $primary-color-darker
+    transform: scale(1.05)
+
+@media (max-width: 450px)
+  .primary
+    padding: 1rem 2.4rem

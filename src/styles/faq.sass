@@ -1,0 +1,98 @@
+// Colors
+$primary-color: hsl(3, 58%, 47%)
+$text-color-primary: #333
+$text-color-secondary: #666
+$white: white
+$black: black
+$border-color: hsla(3, 58%, 47%, 0.5)
+
+// Font
+$font-size-heading: 36px
+$font-size-question: 1.2em
+$font-size-default: 1em
+$font-weight-heading: 600
+$font-weight-link: 600
+$line-height-answer: 1.6
+
+#faq
+  display: flex
+  justify-content: space-between
+  align-items: center
+  flex-direction: column
+  width: 100%
+  height: auto
+  gap: 5rem
+  padding: 10% 20%
+  background-color: $white
+  border-radius: 8px
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+
+.faqContent
+  width: 100%
+
+  pre
+    color: $black
+    display: flex
+    flex-direction: column
+    text-align: center
+    font-size: $font-size-heading
+    text-wrap: wrap
+    font-weight: $font-weight-heading
+
+    span
+      color: $primary-color
+
+.faqItem
+  margin-bottom: 15px
+  border-bottom: 0.5px solid $border-color
+  padding-bottom: 15px
+
+.questionRow
+  display: flex
+  align-items: center
+  cursor: pointer
+  padding: 10px 0
+
+.toggleIcon
+  font-size: 1.5em
+  color: $primary-color
+  margin-right: 10px
+
+.question
+  margin: 0
+  font-size: $font-size-question
+  color: $text-color-primary
+
+.answer
+  padding: 10px 0
+  color: $text-color-secondary
+  line-height: $line-height-answer
+
+.icon
+  width: 80px
+  height: 72px
+
+.aviatorLogoContainer
+  margin-top: 10px
+  text-align: left
+
+.aviatorLogo
+  max-width: 150px
+  height: auto
+
+.patentIcon
+  width: 80px
+  height: 60px
+
+.faqList
+  display: inline-flex
+  justify-content: space-between
+  gap: 1rem
+  text-align: center
+  color: $text-color-secondary
+  margin: 5px 0px
+
+  a
+    color: $primary-color
+    text-decoration: none
+    font-weight: $font-weight-link

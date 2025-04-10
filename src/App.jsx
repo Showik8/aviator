@@ -6,7 +6,6 @@ import Concept from './sections/Concept'
 import WhyUs from "./sections/WhyUs";
 import FAQ from "./sections/Faq";
 
-
 import "./App.css";
 function App() {
     const [width, setWidth] = useState(window.innerWidth);

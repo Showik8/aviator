@@ -1,4 +1,4 @@
-import "../styles/button.css"
+import "../styles/button.sass"
 
   
 const Button = ({text,role}) =>{

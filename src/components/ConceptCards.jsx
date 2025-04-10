@@ -1,4 +1,4 @@
-import "../styles/card.css"
+import "../styles/card.sass"
 const ConceptCard = ({ img, alt, info }) => {
   return (
     <div className="card">

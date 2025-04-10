@@ -1,0 +1,247 @@
+section {
+  height: 800px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(9, 34, 52, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+
+  ul {
+    display: inline-flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .list {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-family: Helvetica, system-ui, Arial, sans-serif;
+    font-size: 18px;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .activatedList {
+    color: hsl(3, 58%, 47%);
+    transform: scale(1.2);
+  }
+
+  .list:hover {
+    color: hsl(3, 58%, 47%);
+  }
+}
+
+#home {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 0;
+  gap: 50px;
+  background-color: rgba(9, 34, 52, 0.8);
+}
+
+.divInHome {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 500px;
+  height: 550px;
+}
+
+.divInHome pre {
+  color: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  font-size: 50px;
+  text-wrap: wrap;
+  font-weight: 600;
+  margin: 0;
+}
+
+.divInHome span {
+  font-weight: 600;
+  font-size: 3rem;
+  color: hsl(3, 58%, 47%);
+}
+
+.divInHome p {
+  padding-right: 1%;
+  overflow-wrap: normal;
+  word-break: normal;
+  color: white;
+  font-size: 16px;
+}
+
+.divInHomeResp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 500px;
+  height: 550px;
+}
+
+.divInHomeResp pre {
+  color: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 50px;
+  text-wrap: wrap;
+  font-weight: 600;
+  margin: 0;
+}
+
+.divInHomeResp span {
+  font-weight: 600;
+  font-size: 3rem;
+  color: hsl(3, 58%, 47%);
+}
+
+.divInHomeResp p {
+  text-align: center;
+  padding-right: 1%;
+  overflow-wrap: normal;
+  word-break: normal;
+  color: white;
+  font-size: 16px;
+}
+
+#home img {
+  width: 600px;
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  bottom: 30px;
+}
+
+#home img:hover {
+  transform: scale(1.05);
+}
+
+#about {
+  background-color: #1e293b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  padding-bottom: 100px;
+}
+
+#about pre {
+  margin-top: 50px;
+  color: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 50px;
+  text-wrap: wrap;
+  font-weight: 600;
+}
+
+#about pre span {
+  font-weight: 600;
+  font-size: 3rem;
+  color: hsl(3, 58%, 47%);
+}
+
+.phonesDiv {
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    transparent 20%,
+    #fff1 20%,
+    #fff1 80%,
+    transparent 80%
+  );
+  width: 100%;
+  padding: 10px 10%;
+  height: 500px;
+  margin-top: 100px;
+}
+
+.phonesDiv p {
+  text-align: start;
+  color: white;
+}
+
+.phonesDiv img {
+  height: 90%;
+}
+
+#conception {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  height: 600px;
+}
+
+.conc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 450px;
+}
+
+.conc pre {
+  color: #242424;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  font-size: 36px;
+  text-wrap: wrap;
+  font-weight: 600;
+  margin: 0;
+}
+
+.conc span {
+  text-align: start;
+  color: #bd3932;
+}
+
+.conc p {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.secondPlane {
+  width: 400px;
+}
+
+#whyus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10%;
+  height: 1200px;
+  background-color: #1e293b;
+}
+
+#whyus pre {
+  color: #fbfbfb;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 36px;
+  text-wrap: wrap;
+}
