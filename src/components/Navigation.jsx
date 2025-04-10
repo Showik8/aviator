@@ -4,7 +4,7 @@ const Navigation = () => {
   const navLinks = [
     { text: "Home", href: "/#home" },
     { text: "About Us", href: "#about" },
-    { text: "Concept", href: "#concept" },
+    { text: "Concept", href: "#conception" },
     { text: "Why Us?", href: "#whyus" },
     { text: "FAQ", href: "#faq" },
   ];
@@ -34,6 +34,7 @@ const Navigation = () => {
         ))}
       </ul>
     </nav>
+
   );
 };
 

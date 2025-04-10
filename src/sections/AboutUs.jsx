@@ -3,6 +3,7 @@ import arrow from '../assets/arrow.png'
 import dollar from "../assets/dollar.png";
 import rocket from "../assets/rocket.png";
 import ConceptCard from '../components/ConceptCards'
+import phone from '../assets/phones.png'
 
 const AboutUs = () =>{
     const cards = [
@@ -24,6 +25,11 @@ const AboutUs = () =>{
             })
             }
         </div>
+
+        <div className='phonesDiv'>
+          <img src={phone} alt="Phones" />
+          <p>Aviator offers single and double betting modes, auto bet and auto cash-out features, and detailed game statistics—giving players full control over their strategy. Whether you’re a high-risk thrill-seeker or a cautious strategist, Aviator delivers an unmatched gaming experience.</p>
+          </div>
       </section>
     );
 }

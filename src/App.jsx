@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import Head from "./sections/Head";
 import Home from "./sections/Home";
 import AboutUs from './sections/AboutUs'
+import Concept from './sections/Concept'
+import WhyUs from "./sections/WhyUs";
+import FAQ from "./sections/Faq";
+
 
 import "./App.css";
 function App() {
@@ -23,6 +27,9 @@ function App() {
       <Head width={width} />
       <Home width={width} />
       <AboutUs />
+      <Concept width={width}/>
+      <WhyUs/>
+      <FAQ/>
     </>
   );
 }
