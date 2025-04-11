@@ -5,7 +5,7 @@ import "../styles/component.sass";
 
 
 const Home = ({width}) => {
-   
+
   return (
     <section id="home">
       <div className={width >= 1440 ? "divInHome" : "divInHomeResp"}>

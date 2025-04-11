@@ -1,30 +1,13 @@
-import React from "react";
-import {useEffect, useState} from "react"
-import { Routes, Route } from "react-router-dom";
-
+import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import Head from "./sections/Head";
 import Home from "./sections/Home";
 import AboutUs from "./sections/AboutUs";
 import Concept from "./sections/Concept";
 import WhyUs from "./sections/WhyUs";
 import FAQ from "./sections/Faq";
-
 import Rame from "./pages/Rame";
-import Error404Page from "./pages/Error404Page";
-
-function HomePageLayout({ width }) {
-  return (
-    <>
-      <Head width={width} />
-      <Home width={width} />
-      <AboutUs />
-      <Concept width={width} />
-      <WhyUs />
-      <FAQ />
-    </>
-  );
-}
-
+import "./App.css";
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -39,14 +22,23 @@ function App() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-
   return (
-    <Routes>
-      <Route path="/" element={<HomePageLayout width={width} />} />
-      <Route path="/view" element={<Rame />} />
-      <Route path="/404" element={<Error404Page />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            ((<Head width={width} />),
+            (<Home width={width} />),
+            (<AboutUs />),
+            (<Concept width={width} />),
+            (<WhyUs />),
+            (<FAQ />))
+          }
+        />
+        <Route path="/view" element={<Rame />} />
+      </Routes>
+    </>
   );
 }
 

@@ -18,17 +18,23 @@ if(displ === "big"){
   return <header>
            <img src={logo} alt="Company Logo" />
            <Navigation />
-           <Button role={"outlined"} text={"Demo"} />
+           <Button href={"/view"} role={"outlined"} text={"Demo"} />
          </header>
 }
 if(displ === "small"){
- return <header className="subHeader">
-    <div>
-      <img src={logo} alt="Company Logo" />
-      <Button role={"outlined"} text={"Demo"} />
-    </div>
-    <Navigation />
-  </header>;
+ return (
+   <header className="subHeader">
+     <div>
+       <img src={logo} alt="Company Logo" />
+       <Button
+         role={"outlined"}
+         href={"/view"}
+         text={"Demo"}
+       />
+     </div>
+     <Navigation />
+   </header>
+ );
 }
 
 

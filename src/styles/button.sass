@@ -4,11 +4,14 @@ $border-radius: 30px
 $white: white
 
 .outlined
-  padding: 1rem 2.5rem
+  padding: 1rem 2rem
   border-radius: $border-radius
   color: $white
   background-color: initial
   border: 1px solid $white
+  cursor: pointer
+  a
+    padding: 1rem 2rem
 
   &:hover
     border-color: $primary-color
@@ -23,11 +26,17 @@ $white: white
   outline: none
   font-weight: 600
   transition: padding 0.3s ease, background-color 0.2s ease, transform 0.2s ease-in-out
+  a
+    padding: 1rem 2rem
 
   &:hover
     background-color: $primary-color-darker
     transform: scale(1.05)
 
+a
+  text-decoration: none
+  outline: none
+  color: $white
 // @media (max-width:800px) 
 // .outlined
 //     padding: 4px 24px
