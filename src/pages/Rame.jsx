@@ -1,6 +1,9 @@
+import BetControler from "../game/gameComponents/betControler"
 const Rame =()=>{
     return <>
-        <h1>am here</h1>
+        <div className="testing"> 
+            <BetControler/>
+        </div>
     </>
 }
 

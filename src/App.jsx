@@ -44,7 +44,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePageLayout width={width} />} />
-      <Route path="/view" element={<Rame />} />
+      <Route path="/game" element={<Rame />} />
       <Route path="/404" element={<Error404Page />} />
     </Routes>
   );

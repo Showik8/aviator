@@ -20,3 +20,13 @@ body {
   height: 100svh;
   background-color: rgba(9, 34, 52, 1);
 }
+
+
+.testing{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}

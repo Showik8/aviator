@@ -2,6 +2,7 @@ $primary-color: hsl(3, 58%, 47%)
 $primary-color-darker: hsl(3, 58%, 34%)
 $border-radius: 30px
 $white: white
+$transition:padding 0.3s ease, background-color 0.2s ease, transform 0.2s ease-in-out
 
 .outlined
   padding: 1rem 2rem
@@ -10,6 +11,7 @@ $white: white
   background-color: initial
   border: 1px solid $white
   cursor: pointer
+  transition: $transition
   a
     padding: 1rem 2rem
 
@@ -25,9 +27,9 @@ $white: white
   border: none
   outline: none
   font-weight: 600
-  transition: padding 0.3s ease, background-color 0.2s ease, transform 0.2s ease-in-out
-  a
-    padding: 1rem 2rem
+  transition: $transition
+  // a
+  //   padding: 1rem 2rem
 
   &:hover
     background-color: $primary-color-darker
@@ -46,5 +48,10 @@ a
 
 
 @media (max-width: 450px)
+  .outlined
+    padding: unset
+  a
+    padding: 0.5rem
+
   .primary
     padding: 1rem 2.4rem

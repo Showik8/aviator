@@ -15,22 +15,20 @@ const Head = ({ width }) => {
 
 
 if(displ === "big"){
-  return <header>
-           <img src={logo} alt="Company Logo" />
-           <Navigation />
-           <Button href={"/view"} role={"outlined"} text={"Demo"} />
-         </header>
+  return (
+    <header>
+      <img src={logo} alt="Company Logo" />
+      <Navigation />
+      <Button href={"/game"} role={"outlined"} text={"Demo"} />
+    </header>
+  );
 }
 if(displ === "small"){
  return (
    <header className="subHeader">
      <div>
        <img src={logo} alt="Company Logo" />
-       <Button
-         role={"outlined"}
-         href={"/view"}
-         text={"Demo"}
-       />
+       <Button role={"outlined"} href={"/game"} text={"Demo"} />
      </div>
      <Navigation />
    </header>

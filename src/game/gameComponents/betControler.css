@@ -1,0 +1,126 @@
+.betControler {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  background-color: #262626b3;
+  
+}
+
+.box {
+  display: flex;
+  padding: 1rem;
+}
+
+.smallBtns {
+  padding: 6px;
+  border-radius: 50%;
+  border: 0.5px solid white;
+  background-color: black;
+  color: white;
+  font-size: small;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.green {
+  background-color: #37a003;
+  color:white;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  font-size: 12px;
+  cursor: pointer;
+
+}
+
+.betCounter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputDivAndSmallButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.autoHandler {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  span{
+    font-size: 12px;
+  }
+}
+
+.buttonDiv {
+  display: flex;
+  background-color: white;
+  width: 40px;
+  height: 20px;
+}
+
+.buttonDivActive{
+  display: flex;
+    background-color: white;
+      width: 40px;
+  height: 20px;
+  justify-content: end;
+}
+
+.oval {
+  background-color: blue;
+  border-radius: 50%;
+  width: 40%;
+  height: 100%;
+}
+
+.smallebi {
+  display: flex;
+  gap: 15px;
+}
+
+.betSmallButtons {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.inputDiv {
+  background-color: black;
+  display: flex;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 15px;
+
+  .input {
+    width: 60%;
+    margin: 5px;
+    background-color: black;
+    box-shadow: none;
+    border: none;
+    color: white;
+    outline: none;
+    text-align: center;
+  }
+ .input[type="number"]::-webkit-outer-spin-button,
+    .input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+  span {
+    color: white;
+    cursor: pointer;
+  }
+}
