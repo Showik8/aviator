@@ -11,7 +11,7 @@ const AutoHandler = ({
         <span>Auto Bet</span>
         <div
           onClick={() => setAutoBetActive((pre) => !pre)}
-          className={autoBetActive ? "buttonDivActive" : "buttonDiv"}
+          className={autoBetActive ? "buttonDiv Active" : "buttonDiv"}
         >
           <div className="oval"></div>
         </div>
@@ -20,11 +20,11 @@ const AutoHandler = ({
         <span>Auto Cash out</span>
         <div
           onClick={() => setAutoChashOut((pre) => !pre)}
-          className={autoCashOut ? "buttonDivActive" : "buttonDiv"}
+          className={autoCashOut ? "buttonDiv Active" : "buttonDiv"}
         >
           <div className="oval"></div>
         </div>
-        <span>5.00</span>
+            <input className="smallAutoInput" type="number" value={5.00}/>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ header
   background-color: rgba(9, 34, 52, 0.8)
   backdrop-filter: blur(10px)
   top: 0
+  z-index: 100
 
   ul
     display: inline-flex
@@ -60,7 +61,7 @@ header
   justify-content: center
   align-items: center
   padding: 5% 0%
-  gap: 50px
+  gap: 100px
   background-color: rgba(9, 34, 52, 0.8)
 
   .divInHome
@@ -123,10 +124,11 @@ header
       font-size: 16px
 
   img
-    width: 600px
+    width: 500px
     transition: transform 0.2s ease-in-out
     position: relative
     bottom: 30px
+    margin-bottom: 100px
 
     &:hover
       transform: scale(1.05)
@@ -212,7 +214,7 @@ header
   flex-direction: column
   align-items: center
   justify-content: space-around
-  padding: 10%
+  padding: 5% 10%
   height: 1200px
   background-color: #1e293b
 
@@ -231,8 +233,8 @@ header
       color: #bd3932
 
   .reasonCards
-    display: flex
-    justify-content: space-around
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
     width: 100%
     margin-bottom: 40px
 
@@ -260,8 +262,11 @@ header
     width: 70%
     height: 450px
     border-radius: 15px
+    border: 0.1px solid 
+    border-color: rgb(232, 232, 232, 0.4)
+  
     background: linear-gradient(160deg, #ffffff18, #2b313d)
-    color: #e8e8e8
+    color: rgb(232, 232, 232)
     padding: 2% 10%
     text-align: center
 

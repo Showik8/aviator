@@ -140,13 +140,13 @@ function FAQ() {
 
       <div className="faqContent">
         {faqData.map((item) => (
-          <div
+          <details
             className={`faqItem ${
               expandedQuestion === item.id ? "expanded" : ""
             }`}
             key={item.id}
           >
-            <div
+            <summary
               className="questionRow"
               onClick={() => toggleQuestion(item.id)}
             >
@@ -154,14 +154,12 @@ function FAQ() {
                 {expandedQuestion === item.id ? "-" : "+"}
               </span>
               <h2 className="question">{item.question}</h2>
+            </summary>
+            <div className="answer">
+              {item.answer}
+              {item.id === 1 && <div className="aviatorLogoContainer"></div>}
             </div>
-            {expandedQuestion === item.id && (
-              <div className="answer">
-                {item.answer}
-                {item.id === 1 && <div className="aviatorLogoContainer"></div>}
-              </div>
-            )}
-          </div>
+          </details>
         ))}
       </div>
     </section>
