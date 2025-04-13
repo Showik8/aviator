@@ -9,7 +9,7 @@ import Concept from "./sections/Concept";
 import WhyUs from "./sections/WhyUs";
 import FAQ from "./sections/Faq";
 
-import Rame from "./pages/Rame";
+import Game from "./pages/Game";
 import Error404Page from "./pages/Error404Page";
 
 function HomePageLayout({ width }) {
@@ -44,7 +44,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePageLayout width={width} />} />
-      <Route path="/game" element={<Rame />} />
+      <Route path="/game" element={<Game />} />
       <Route path="/404" element={<Error404Page />} />
     </Routes>
   );

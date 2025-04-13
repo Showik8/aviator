@@ -6,36 +6,40 @@ import "./betControler.css";
 import BetSmallButtons from "../betComponents/betSmallButtons";
 import BetInput from "../betComponents/BetInput";
 const BetControler = () => {
-  const [num, setNum] = useState(1);
+  const [betAmount, setbetAmount] = useState(1);
   const [inputValue, setInputValue] = useState(1);
   const [autoBetActive, setAutoBetActive] = useState(false);
-  const [cashOut, setAutoChashOut] = useState(false)
-  const [betActive, setBetActive] = useState(false)
+  const [cashOut, setAutoChashOut] = useState(false);
+  const [betActive, setBetActive] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [bet, setBet] = useState(false);
 
   useEffect(() => {
-    setInputValue(num);
-  }, [num]);
+    setInputValue(betAmount);
+  }, [betAmount]);
 
   const decreaseBetAmount = (value) => {
     switch (true) {
       case value < 0.01:
         return;
       case value == 1:
-        setNum(0.1);
+        setbetAmount(0.1);
         break;
       case value > 1:
-        setNum((pre) => pre - 1);
+        setbetAmount((pre) => pre - 1);
       default:
         break;
     }
   };
 
   const encreaseBetAmount = () => {
-    setNum((pre) => pre + 1);
+    setbetAmount((pre) => pre + 1);
   };
 
   return (
     <>
+      {/* <Algoritm algoritm={algoritm} /> */}
+
       <div className="betControler">
         <div className="box">
           <div className="betCounter">
@@ -44,14 +48,18 @@ const BetControler = () => {
                 inputValue={inputValue}
                 decreaseBetAmount={decreaseBetAmount}
                 encreaseBetAmount={encreaseBetAmount}
-                setNum={setNum}
+                setbetAmount={setbetAmount}
               />
-              <BetSmallButtons setNum={setNum} />
+              <BetSmallButtons setbetAmount={setbetAmount} />
             </div>
             <BetButton
               betActive={betActive}
               setBetActive={setBetActive}
-              num={num}
+              betAmount={betAmount}
+              gameStarted={gameStarted}
+              setGameStarted={setGameStarted}
+              bet={bet}
+              setBet={setBet}
             />
           </div>
 

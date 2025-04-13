@@ -1,11 +1,11 @@
 import React from 'react'
 
-const BetSmallButtons = ({setNum}) => {
+const BetSmallButtons = ({setbetAmount}) => {
       const suggestedNumbers = [1, 2, 25, 100];
 
 
      const enterFixedBet = (value) => {
-       setNum(value);
+       setbetAmount(value);
      };
   return (
     <div className="betSmallButtons">

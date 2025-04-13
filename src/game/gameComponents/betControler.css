@@ -40,6 +40,21 @@
   cursor: pointer;
 }
 
+.greenActive{
+  background-color: red;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  font-size: 12px;
+  cursor: pointer;
+}
+
 .betCounter {
   display: flex;
   justify-content: space-between;

@@ -24,7 +24,7 @@ const AutoHandler = ({
         >
           <div className="oval"></div>
         </div>
-            <input className="smallAutoInput" type="number" value={5.00}/>
+            <input onChange={()=>null} className="smallAutoInput" type="number" value={5.00}/>
       </div>
     </div>
   );
