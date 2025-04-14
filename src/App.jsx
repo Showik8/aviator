@@ -1,6 +1,7 @@
 import React from "react";
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 import Head from "./sections/Head";
 import Home from "./sections/Home";
@@ -40,13 +41,14 @@ function App() {
     };
   }, []);
 
-
   return (
-    <Routes>
-      <Route path="/" element={<HomePageLayout width={width} />} />
-      <Route path="/game" element={<Game />} />
-      <Route path="/404" element={<Error404Page />} />
-    </Routes>
+    <RecoilRoot>
+      <Routes>
+        <Route path="/" element={<HomePageLayout width={width} />} />
+        <Route path="/game" element={<Game />} />
+        <Route path="/404" element={<Error404Page />} />
+      </Routes>
+    </RecoilRoot>
   );
 }
 

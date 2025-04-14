@@ -2,12 +2,132 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 4px;
+  padding: 5px 5px 15px;
+}
 
-  div {
-    strong {
-      color: green;
-    }
+.controler {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  gap: 5px;
+
+  strong {
+    color: #47cc04;
   }
 }
 
+.svgIcon {
+  width: 30px;
+  height: 30px;
+  border: 2px solid white;
+  border-radius: 20px;
+  background-color: red;
+  margin-left: 10px;
+}
+
+.tabSwitcher {
+  background-color: #222;
+  border-radius: 20px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabButton {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  width: 50%;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  background-color: transparent;
+}
+
+.tabButton.active {
+  background-color: #444;
+  width: 50%;
+}
+
+.tabContent {
+  margin-top: 20px;
+  color: white;
+}
+
+.playersList {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.totalBets {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+
+  span {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+.previous {
+  color: white;
+  background-color: #444;
+  padding: 8px;
+  border-radius: 14px;
+  font-size: 12px;
+}
+
+.listCards {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.listNames {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  div {
+    display: inline-flex;
+    gap: 60px;
+    color: white;
+  }
+
+  span {
+    color: white;
+  }
+}
+.playersCards {
+  padding: 2px;
+  h1 {
+    color: white;
+  }
+}
+
+.playerCard{
+  color:white;
+  width:100%;
+  border: 1px solid greenyellow;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 14px;
+  margin-top: 6px;
+
+}
+.wrapper{
+ display: inline-flex;
+ gap:1rem;
+}
+.playerProfile{
+ 
+}

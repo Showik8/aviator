@@ -17,6 +17,8 @@ const BetControler = ({ gameStarted, setGameStarted }) => {
     setInputValue(betAmount);
   }, [betAmount]);
 
+  console.log(gameStarted)
+
   const decreaseBetAmount = (value) => {
     switch (true) {
       case value < 0.01:

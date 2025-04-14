@@ -35,14 +35,14 @@ const BetButton = ({
     if (!gameStarted && betActive) {
       setBet(true);
     }
-    setAlgoritm(true);
   };
 
   return (
     <div
       onClick={() => onClickHandler()}
+      // className={betActive ? "greenActive" : "green"}
+      className="green"
       style={{ backgroundColor: styles,}}
-      className={betActive ? "greenActive" : "green"}
     >
       {textValue}
       <br />
