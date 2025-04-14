@@ -5,10 +5,6 @@
   background-color: #262626b3;
 }
 
-.box {
-  display: flex;
-  padding: 1rem;
-}
 
 .smallBtns {
   padding: 6px;
@@ -22,7 +18,10 @@
 .box {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  padding: 1rem;
+  width: 400px;
+  background-color: #262626b3;
+  border-radius: 16px;
 }
 
 .green {
@@ -31,7 +30,7 @@
   font-weight: 600;
   font-size: 20px;
   text-align: center;
-  border-radius: 30px;
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,6 +57,7 @@
 .betCounter {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .inputDivAndSmallButtons {
@@ -79,22 +79,23 @@
 
 .buttonDiv {
   display: flex;
-  background-color: white;
+  background-color: #4d4d4d;
   width: 40px;
   height: 20px;
   border-radius: 20px;
   padding: 1px;
   transition: justify-content 1s ease-in-out;
-  justify-content: start; /* Default state */
+  justify-content: start; 
 }
 
 .buttonDiv.Active {
-  justify-content: end; /* Active state overrides the default */
+  justify-content: end; 
+  background-color: #47cc04;
 }
 
 
 .oval {
-  background-color: blue;
+  background-color: white;
   border-radius: 50%;
   width: 40%;
   height: 100%;
@@ -102,6 +103,7 @@
 
 .smallebi {
   display: flex;
+  align-items: center;
   gap: 15px;
 
   span {

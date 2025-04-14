@@ -3,15 +3,14 @@ import AutoHandler from "../betComponents/autoHandler";
 import BetButton from "../betComponents/BetButton";
 
 import "./betControler.css";
-import BetSmallButtons from "../betComponents/betSmallButtons";
+import BetSmallButtons from "../betComponents/BetSmallButtons";
 import BetInput from "../betComponents/BetInput";
-const BetControler = () => {
+const BetControler = ({ gameStarted, setGameStarted }) => {
   const [betAmount, setbetAmount] = useState(1);
   const [inputValue, setInputValue] = useState(1);
   const [autoBetActive, setAutoBetActive] = useState(false);
   const [cashOut, setAutoChashOut] = useState(false);
   const [betActive, setBetActive] = useState(false);
-  const [gameStarted, setGameStarted] = useState(false);
   const [bet, setBet] = useState(false);
 
   useEffect(() => {
@@ -40,7 +39,6 @@ const BetControler = () => {
     <>
       {/* <Algoritm algoritm={algoritm} /> */}
 
-      <div className="betControler">
         <div className="box">
           <div className="betCounter">
             <div className="inputDivAndSmallButtons">
@@ -69,7 +67,6 @@ const BetControler = () => {
             setAutoBetActive={setAutoBetActive}
             setAutoChashOut={setAutoChashOut}
           />
-        </div>
       </div>
     </>
   );

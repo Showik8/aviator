@@ -10,22 +10,23 @@ const BetButton = ({
   setBet,
   setGameStarted,
 }) => {
-  let styles = "green";
+  let styles = "#37a003";
   let textValue = "BET";
 
   if (gameStarted && betActive) {
     textValue = "CASH OUT";
-    styles = "orange";
+    styles = "#e79823";
   }
   if (!gameStarted && betActive) {
     textValue = "WAITING";
-    styles = "red";
+    styles = "#ff1f1f";
+
     setTimeout(() => {
       setGameStarted(true);
     }, 4000);
   }
   if (bet) {
-    styles = "red";
+    styles = "ff1f1f";
     textValue = "CANCEL";
   }
 
@@ -40,8 +41,8 @@ const BetButton = ({
   return (
     <div
       onClick={() => onClickHandler()}
+      style={{ backgroundColor: styles,}}
       className={betActive ? "greenActive" : "green"}
-      style={{ backgroundColor: styles }}
     >
       {textValue}
       <br />
