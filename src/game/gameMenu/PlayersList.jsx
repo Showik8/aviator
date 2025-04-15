@@ -1,4 +1,5 @@
 import PlayerCard from "./PlayerCard"
+import clock from "../gameAssets/clock.svg"
 
 const PlayersList = () => {
   let totalBets = 0;
@@ -7,7 +8,9 @@ const PlayersList = () => {
       <div className="playersList">
         <div className="totalBets">
           <span>Total Bets : {totalBets}</span>
-          <div className="previous">Previous Round</div>
+          <div className="previous">
+            <img className="clock" src={clock} alt="clock" /> Previous Round
+          </div>
         </div>
         <div className="listCards">
           <div className="listNames">

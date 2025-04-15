@@ -4,6 +4,7 @@ const AutoHandler = ({
   autoBetActive,
   setAutoBetActive,
   autoCashOut,
+  betActive,
   setAutoChashOut,
 }) => {
 
@@ -18,7 +19,7 @@ const AutoHandler = ({
           <div className="oval"></div>
         </div>
       </div>
-      <div className="smallebi">
+      <div className={betActive ? "disabledDiv" : "smallebi"}>
         <span>Auto Cash out</span>
         <div
           onClick={() => setAutoChashOut((pre) => !pre)}
@@ -26,7 +27,12 @@ const AutoHandler = ({
         >
           <div className="oval"></div>
         </div>
-            <input onChange={()=>null} className="smallAutoInput" type="number" value={5.00}/>
+        <input
+          onChange={() => null}
+          className="smallAutoInput"
+          type="number"
+          value={5.0}
+        />
       </div>
     </div>
   );

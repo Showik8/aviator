@@ -7,10 +7,12 @@
 
 
 .smallBtns {
-  padding: 6px;
-  border-radius: 50%;
-  border: 0.5px solid white;
-  background-color: black;
+  padding: 4px 8px ;
+  border-radius: 1rem;
+  /* border: 0.5px solid white; */
+  background-color: #333333;
+  box-shadow: inherit;
+  box-shadow: 0 0.06em 0.09em 0 #b3b3b3;;
   color: white;
   font-size: small;
 }
@@ -24,8 +26,8 @@
   border-radius: 16px;
 }
 
-.green {
-  background-color: #37a003;
+.betButton {
+   background-color: #37a003;
   color: white;
   font-weight: 600;
   font-size: 20px;
@@ -37,22 +39,9 @@
   width: 80%;
   font-size: 12px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.greenActive{
-  background-color: red;
-  color: white;
-  font-weight: 600;
-  font-size: 20px;
-  text-align: center;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  font-size: 12px;
-  cursor: pointer;
-}
 
 .betCounter {
   display: flex;
@@ -113,14 +102,14 @@
   .smallAutoInput {
     width: 40px;
     height: 15px;
-    padding: 5px;
+    padding: 8px;
     text-align: center;
     border-radius: 20px;
     color: white;
-    background-color: gray;
+    background-color:#4d4d4d;
     outline: none;
     border: none;
-    font-size: 12px;
+    font-size: .755em;
   }
 
   .smallAutoInput[type="number"]::-webkit-outer-spin-button,
@@ -128,6 +117,15 @@
     -webkit-appearance: none;
     margin: 0;
   }
+}
+
+.smallebi:aria-disabled{
+  background-color: red;
+}
+.disabledDiv {
+  opacity: 0.5; /* Reduce opacity to visually indicate it's disabled */
+  pointer-events: none; /* Prevent the div from being the target of mouse events */
+  cursor: not-allowed; /* Change the cursor to indicate it's not interactive */
 }
 
 .betSmallButtons {

@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import  {atom}  from "recoil";
 
-export const gameIsStarted = atom({
-  key: "GameStarted",
-  default: "false",
+export const GameIsStarted = atom({
+  key: "GameIsStarted",
+  default: false,
 });

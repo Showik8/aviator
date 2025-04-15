@@ -1,26 +1,24 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { gameIsStarted, } from "../../states/gameStarted";
-
 import BetControler from "../game/gameComponents/betControler";
 import plane from "../game/gameAssets/plane.png";
 import SubHeader from "../game/gameMenu/SubHeader";
 import TabSwitcher from "../game/gameMenu/TabSwitcher";
 import PlayersList from "../game/gameMenu/PlayersList";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useContext, createContext } from "react";
+import { GameStarterContext } from "./GameStarterContext";
+
 
 import "../styles/game.css";
+
+
 const Game = () => {
+  
+  const { GameIsStarted, StarterOfGame } = useContext(GameStarterContext);
+
   const fullscreenElement = useRef(null);
+    console.log(GameIsStarted, "Tamashi aris");
 
-  const [gameStarted, setGameStarted] = useState(false);
 
-
-  if (!gameStarted) {
-    setTimeout(() => {
-      console.log("araaa");
-    }, 2000);
-  }
 
   return (
     <>
@@ -33,14 +31,8 @@ const Game = () => {
         <div className="canva">
           <img className="CanvaPhoto" src={plane} alt="" />
           <div className="betButtons">
-            <BetControler
-              gameStarte={gameStarted}
-              setGameStarted={setGameStarted}
-            />
-            <BetControler
-              gameStarte={gameStarted}
-              setGameStarted={setGameStarted}
-            />
+            <BetControler gameIsStarted={GameIsStarted} />
+            <BetControler gameIsStarted={GameIsStarted} />
           </div>
         </div>
       </div>

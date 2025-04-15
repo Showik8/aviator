@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { RecoilRoot } from "recoil";
 
 import Head from "./sections/Head";
 import Home from "./sections/Home";
@@ -12,6 +11,7 @@ import FAQ from "./sections/Faq";
 
 import Game from "./pages/Game";
 import Error404Page from "./pages/Error404Page";
+import { Games } from "./pages/GameStarterContext";
 
 function HomePageLayout({ width }) {
   return (
@@ -42,13 +42,18 @@ function App() {
   }, []);
 
   return (
-    <RecoilRoot>
-      <Routes>
-        <Route path="/" element={<HomePageLayout width={width} />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/404" element={<Error404Page />} />
-      </Routes>
-    </RecoilRoot>
+    <Routes>
+      <Route path="/" element={<HomePageLayout width={width} />} />
+      <Route
+        path="/game"
+        element={
+          <Games>
+            <Game />
+          </Games>
+        }
+      />
+      <Route path="/404" element={<Error404Page />} />
+    </Routes>
   );
 }
 
