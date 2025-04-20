@@ -1,24 +1,17 @@
 import BetControler from "../game/gameComponents/betControler";
-import plane from "../game/gameAssets/plane.png";
 import SubHeader from "../game/gameMenu/SubHeader";
 import TabSwitcher from "../game/gameMenu/TabSwitcher";
 import PlayersList from "../game/gameMenu/PlayersList";
+import Aviator from "../game/canvas/Aviator";
 
-import { useState, useRef, useContext, createContext } from "react";
+import { useRef, useContext } from "react";
 import { GameStarterContext } from "./GameStarterContext";
-
 
 import "../styles/game.css";
 
-
 const Game = () => {
-  
   const { GameIsStarted, StarterOfGame } = useContext(GameStarterContext);
-
   const fullscreenElement = useRef(null);
-    console.log(GameIsStarted, "Tamashi aris");
-
-
 
   return (
     <>
@@ -29,7 +22,7 @@ const Game = () => {
           <PlayersList />
         </div>
         <div className="canva">
-          <img className="CanvaPhoto" src={plane} alt="" />
+          <Aviator />
           <div className="betButtons">
             <BetControler gameIsStarted={GameIsStarted} />
             <BetControler gameIsStarted={GameIsStarted} />

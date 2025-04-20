@@ -18,24 +18,27 @@
   height: 100%;
   width: 35%;
   background-color: black;
-  padding: 10px ;
+  padding: 10px ; 
 
 }
 
 .canva{
   width: 65%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   background-color: rgb(2, 2, 22);
 
 }
 
 .betButtons{
-  position: relative;
-  bottom: 145px;
   display: flex;
   justify-content: center;
   gap: 10px;
   width: 100%;
   padding:1%;
   z-index: 100;
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0a0f18 100%);
 }

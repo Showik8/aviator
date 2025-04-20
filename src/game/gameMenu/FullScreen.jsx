@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import fullScreenIcon from "../gameAssets/fullScreenIcon.svg";
 import Exit from "../gameAssets/Exit.svg";
 

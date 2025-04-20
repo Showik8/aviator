@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
-const BetButton = ({ gameIsStarted, betAmount, setBetActive, betActive }) => {
+const BetButton = ({ gameIsStarted, betAmount, setBetActive, }) => {
   const [state, setState] = useState("bet");
-  console.log(betActive);
 
   useEffect(() => {
     if (gameIsStarted) {
