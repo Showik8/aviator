@@ -1,114 +1,118 @@
-// Constants
-const PADDING = 20;
+// მუდმივა
+const PADDING = 20; // მარჯვენა, მარცხენა, ზედა და ქვედა ზღვარი კენვასის გარშემო
 
-// Cookie management functions
+// ქუქიების მართვის ფუნქციები
 const CookieManager = {
-  // Set a cookie with name, value, and expiration in days
+  // ქუქის შექმნა სახელით, მნიშვნელობით და ვადით (დღეებში)
   setCookie(name, value, days = 30) {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    const expires = `expires=${date.toUTCString()}`;
-    document.cookie = `${name}=${value};${expires};path=/`;
+    const date = new Date(); // ახალი თარიღის ობიექტის შექმნა
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); // ვადის განსაზღვრა მილიწამებში
+    const expires = `expires=${date.toUTCString()}`; // ვადის ტექსტური ფორმატირება
+    document.cookie = `${name}=${value};${expires};path=/`; // ქუქის ჩაწერა
   },
 
-  // Retrieve a cookie value by name
+  // ქუქის მნიშვნელობის წამოღება სახელით
   getCookie(name) {
-    const cookieName = `${name}=`;
-    const cookies = document.cookie.split(";");
+    const cookieName = `${name}=`; // ქუქის სახელის ფორმატირება
+    const cookies = document.cookie.split(";"); // ყველა ქუქის გაყოფა
     for (let cookie of cookies) {
-      cookie = cookie.trim();
+      cookie = cookie.trim(); // ცარიელი ადგილების მოცილება
       if (cookie.indexOf(cookieName) === 0) {
-        return cookie.substring(cookieName.length, cookie.length);
+        return cookie.substring(cookieName.length, cookie.length); // ქუქის მნიშვნელობის დაბრუნება
       }
     }
-    return null;
+    return null; // თუ ვერ მოიძებნა, დააბრუნე null
   },
 
-  // Store multiplier and its history in cookies
+  // მულტიპლიკატორის და მისი ისტორიის შენახვა ქუქიში
   storeMultiplier(multiplier) {
-    this.setCookie("lastMultiplier", multiplier);
-    let history = JSON.parse(this.getCookie("multiplierHistory") || "[]");
+    this.setCookie("lastMultiplier", multiplier); // ბოლო მულტიპლიკატორის შენახვა
+    let history = JSON.parse(this.getCookie("multiplierHistory") || "[]"); // ისტორიის წამოღება ან ცარიელი მასივი
     history.unshift({
       multiplier: multiplier,
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toISOString(), // მიმდინარე დროის დამატება
     });
-    history = history.slice(0, 10);
-    this.setCookie("multiplierHistory", JSON.stringify(history));
+    history = history.slice(0, 10); // მხოლოდ ბოლო 10 ჩანაწერის შენახვა
+    this.setCookie("multiplierHistory", JSON.stringify(history)); // განახლებული ისტორიის შენახვა
   },
 
-  // Retrieve the multiplier history from cookies
+  // მულტიპლიკატორის ისტორიის წამოღება ქუქიდან
   getMultiplierHistory() {
-    return JSON.parse(this.getCookie("multiplierHistory") || "[]");
+    return JSON.parse(this.getCookie("multiplierHistory") || "[]"); // ისტორიის გაშიფვრა და დაბრუნება
   },
 
-  // Get the last recorded multiplier
+  // ბოლო მულტიპლიკატორის წამოღება
   getLastMultiplier() {
-    return parseFloat(this.getCookie("lastMultiplier") || "0");
+    return parseFloat(this.getCookie("lastMultiplier") || "0"); // მნიშვნელობის რიცხვად გარდაქმნა
   },
 };
 
-// Main game class that controls the plane animation and game logic
+// მთავარი თამაშის კლასი — მართავს თვითმფრინავის ანიმაციას და ლოგიკას
 class AviatorGame {
   constructor(ctx, width, height) {
-    this.ctx = ctx;
-    this.width = width;
-    this.height = height;
-    this.onGameEnd = null;
-    this.onMultiplierChange = null;
-    this.animationFrame = null;
-    this.imageLoaded = false;
-    this.initializeGame();
+    this.ctx = ctx; // კენვასის კონტექსტი
+    this.width = width; // კენვასის სიგანე
+    this.height = height; // კენვასის სიმაღლე
+    this.onGameEnd = null; // callback ფუნქცია თამაშის დასრულებაზე
+    this.onMultiplierChange = null; // callback მულტიპლიკატორის ცვლილებაზე
+    this.animationFrame = null; // ანიმაციის კადრის ID
+    this.imageLoaded = false; // თვითმფრინავის გამოსახულების ჩატვირთვის სტატუსი
+    this.initializeGame(); // თამაშის ინიციალიზაცია
   }
 
+  // საწყისი პარამეტრების დაყენება
   initializeGame() {
-    this.planeWidth = 100;
-    this.planeHeight = 50;
-    this.x = PADDING + 100;
-    this.y = this.height - 100;
+    this.planeWidth = 150; // თვითმფრინავის სიგანე
+    this.planeHeight = 150; // თვითმფრინავის სიმაღლე
+    this.x = PADDING + 100; // საწყისი პოზიცია X ღერძზე
+    this.y = this.height - 100; // საწყისი პოზიცია Y ღერძზე
 
-    this.speed = 4;
-    this.ascendSpeed = Math.tan((20 * Math.PI) / 180) * this.speed;
+    this.speed = 4; // საწყისი სიჩქარე (ჰორიზონტალურად)
+    this.ascendSpeed = Math.tan((20 * Math.PI) / 180) * this.speed; // ვერტიკალური სიჩქარე 20 გრადუსით
 
-    this.allTrailPoints = [{ x: this.x, y: this.y }];
-    this.maxTrailLength = this.width;
-    this.finalTrailPoints = null;
-    this.trailHeight = 2000;
+    this.allTrailPoints = [{ x: this.x, y: this.y }]; // კვამლის კვალის საწყისი წერტილი
+    this.maxTrailLength = this.width; // კვალი ეკრანზე მაქსიმალურად
+    this.finalTrailPoints = null; // საბოლოო კვალი თვითმფრინავის გაფრენისას
+    this.trailHeight = 2000; // კვალის სიმაღლე
 
-    this.currentMultiplier = 0;
-    this.isFlying = true;
-    this.hasStopped = false;
-    this.flyingAway = false;
-    this.finalMultiplier = 0;
-    this.isResetting = false;
+    this.currentMultiplier = 0; // მულტიპლიკატორის საწყისი მნიშვნელობა
+    this.isFlying = true; // ფლობს თუ არა თვითმფრინავი
+    this.hasStopped = false; // შეჩერდა თუ არა თამაში
+    this.flyingAway = false; // გაფრინდა თუ არა თვითმფრინავი
+    this.finalMultiplier = 0; // საბოლოო მულტიპლიკატორი
+    this.isResetting = false; // თამაშის გადატვირთვის პროცესი მიმდინარეობს
 
-    // Load the plane image
-    this.planeImage = new Image();
+    // თვითმფრინავის სურათის ჩატვირთვა
+    this.planeImage = new Image(); // ახალი სურათის ობიექტი
     this.planeImage.onload = () => {
       const aspectRatio =
         this.planeImage.naturalWidth / this.planeImage.naturalHeight;
-      this.planeHeight = this.planeWidth / aspectRatio;
+      this.planeHeight = this.planeWidth / aspectRatio; // პროპორციების შენარჩუნება
       this.imageLoaded = true;
     };
     this.planeImage.onerror = () => {
-      console.error("Failed to load plane image");
+      console.error("ვერ ჩაიტვირთა თვითმფრინავის სურათი");
       this.imageLoaded = false;
     };
-    // Use a placeholder image or your actual image path
-    this.planeImage.src = "/assets/aviator-image.png";
+    this.planeImage.src = "/assets/aviator-image.png"; // სურათის ბილიკი
   }
 
+  // თამაშის დასრულების callback ფუნქციის რეგისტრაცია
   onGameEnded(callback) {
     this.onGameEnd = callback;
   }
 
+  // ამჟამინდელი მულტიპლიკატორის მიღება
   getCurrentMultiplier() {
     return this.flyingAway ? this.finalMultiplier : this.currentMultiplier;
   }
 
+  // საბოლოო მულტიპლიკატორის მიღება
   getFinalMultiplier() {
     return this.finalMultiplier;
   }
 
+  // თვითმფრინავის წითელი კვალის დახატვა
   drawTrail() {
     const points = this.flyingAway
       ? this.finalTrailPoints
@@ -116,7 +120,7 @@ class AviatorGame {
 
     if (!points || points.length < 2) return;
 
-    this.ctx.beginPath();
+    this.ctx.beginPath(); // ხატვის დასაწყისი
 
     const lastPoint = points[points.length - 1];
     this.ctx.moveTo(lastPoint.x, lastPoint.y);
@@ -135,25 +139,26 @@ class AviatorGame {
       this.ctx.lineTo(point.x, point.y + 100);
     }
 
-    this.ctx.closePath();
-    this.ctx.fillStyle = "rgba(155, 7, 7, 0.82)";
-    this.ctx.fill();
+    this.ctx.closePath(); // გზა დახურვა
+    this.ctx.fillStyle = "rgba(155, 7, 7, 0.82)"; // ფერი კვალისთვის
+    this.ctx.fill(); // კვალის შევსება
   }
 
+  // თვითმფრინავის და კვალის დახატვა
   draw() {
     if (this.isResetting) return;
 
-    this.ctx.clearRect(0, 0, this.width, this.height);
-    this.drawTrail();
+    this.ctx.clearRect(0, 0, this.width, this.height); // კენვასის გაწმენდა
+    this.drawTrail(); // კვალის დახატვა
 
     if (this.imageLoaded && this.planeImage.complete) {
+      // თუ სურათი ჩატვირთულია — დახატე თვითმფრინავი
       this.ctx.save();
       this.ctx.translate(
         this.x + this.planeWidth / 2,
         this.y + this.planeHeight / 2
       );
-      this.ctx.rotate((-1 * Math.PI) / 180);
-      this.ctx.fillStyle = "red";
+      this.ctx.rotate((-1 * Math.PI) / 180); // მცირე როტაცია
       this.ctx.globalCompositeOperation = "source-over";
       this.ctx.drawImage(
         this.planeImage,
@@ -164,7 +169,7 @@ class AviatorGame {
       );
       this.ctx.restore();
     } else {
-      // Draw a placeholder rectangle if image is not loaded
+      // დროებითი წითელი ოთხკუთხედი თვითმფრინავის ნაცვლად
       this.ctx.save();
       this.ctx.translate(
         this.x + this.planeWidth / 2,
@@ -182,30 +187,31 @@ class AviatorGame {
     }
   }
 
+  // თვითმფრინავის პოზიციის განახლება
   update() {
     if (this.isResetting || !this.isFlying) return;
 
     if (this.hasStopped) {
-      CookieManager.storeMultiplier(this.finalMultiplier);
-      if (this.onGameEnd) {
-        this.onGameEnd(this.finalMultiplier);
-      }
-      this.prepareReset();
+      CookieManager.storeMultiplier(this.finalMultiplier); // მულტიპლიკატორის შენახვა
+      if (this.onGameEnd) this.onGameEnd(this.finalMultiplier); // callback
+      this.prepareReset(); // თამაშის გადატვირთვა
       return;
     }
 
-    this.x += this.speed;
-    this.y -= this.ascendSpeed;
+    this.x += this.speed; // მარჯვნივ მოძრაობა
+    this.y -= this.ascendSpeed; // მაღლა მოძრაობა
 
     if (this.flyingAway) {
+      // გაფრენისას სიჩქარის გაზრდა
       const speedMultiplier = 1.05;
       this.speed *= speedMultiplier;
       this.ascendSpeed *= speedMultiplier;
 
       if (this.y < -this.planeHeight) {
-        this.hasStopped = true;
+        this.hasStopped = true; // თუ ეკრანს გაცდა — დასრულდეს
       }
     } else {
+      // ჩვეულებრივი ფრენა
       const multiplierIncrease = Math.random() * 0.03 + 0.01;
       this.currentMultiplier += multiplierIncrease;
 
@@ -216,10 +222,11 @@ class AviatorGame {
       this.allTrailPoints.push({ x: this.x, y: this.y });
 
       while (this.allTrailPoints[0].x < this.x - this.maxTrailLength) {
-        this.allTrailPoints.shift();
+        this.allTrailPoints.shift(); // ძველი წერტილების წაშლა
       }
 
       if (Math.random() < 0.01 && this.currentMultiplier > 1.1) {
+        // გაფრენის შანსი
         this.flyingAway = true;
         this.finalMultiplier = this.currentMultiplier;
         this.finalTrailPoints = [...this.allTrailPoints];
@@ -229,27 +236,30 @@ class AviatorGame {
     }
   }
 
+  // თამაშის გადატვირთვა დაყოვნებით
   prepareReset() {
     if (this.isResetting) return;
     this.isResetting = true;
 
     this.ctx.clearRect(0, 0, this.width, this.height);
-    this.drawTrail();
+    this.drawTrail(); // საბოლოო კვალის დახატვა
 
     setTimeout(() => {
-      this.initializeGame();
-    }, 2000);
+      this.initializeGame(); // თამაშის ხელახლა ინიციალიზაცია
+    }, 3000); // 3 წამით დაყოვნება
   }
 
+  // ანიმაციის დაწყება
   startAnimation() {
     const animate = () => {
-      this.update();
-      this.draw();
-      this.animationFrame = requestAnimationFrame(animate);
+      this.update(); // ლოგიკის განახლება
+      this.draw(); // დახატვა
+      this.animationFrame = requestAnimationFrame(animate); // ციკლის გაგრძელება
     };
     this.animationFrame = requestAnimationFrame(animate);
   }
 
+  // ანიმაციის გაჩერება
   stopAnimation() {
     if (this.animationFrame) {
       cancelAnimationFrame(this.animationFrame);
@@ -257,68 +267,66 @@ class AviatorGame {
     }
   }
 
+  // თამაშის ხელით გადატვირთვა
   reset() {
     this.stopAnimation();
     this.initializeGame();
     this.startAnimation();
   }
 
+  // ქუქიდან ისტორიის წამოღება
   getMultiplierHistory() {
     return CookieManager.getMultiplierHistory();
   }
 
+  // ბოლო მულტიპლიკატორის წამოღება ქუქიდან
   getLastStoredMultiplier() {
     return CookieManager.getLastMultiplier();
   }
 
+  // მულტიპლიკატორის ცვლილების callback რეგისტრაცია
   onMultiplierUpdate(callback) {
     this.onMultiplierChange = callback;
   }
 }
 
-// Export the initialization function
+// ფუნქცია თამაშის დასაწყებად
 export const initializeGame = (canvas, multiplierDisplay) => {
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d"); // 2D კონტექსტის მიღება
 
-  // Add padding to canvas
+  // კენვასისთვის padding-ის დამატება
   canvas.style.padding = `${PADDING}px`;
   canvas.style.boxSizing = "border-box";
 
-  // Add observer to capture changes in multiplier text content
+  // ობსერვერი, რომელიც აკვირდება მულტიპლიკატორის გამოსახვას
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === "characterData" || mutation.type === "childList") {
-        CookieManager.getLastMultiplier();
+        CookieManager.getLastMultiplier(); // დროებითი ქმედება
       }
     });
   });
 
-  // Start observing changes in the multiplier display element
+  // მულტიპლიკატორის გამოსახულების დაკვირვება
   observer.observe(multiplierDisplay, {
     characterData: true,
     childList: true,
     subtree: true,
   });
 
-  // Update the canvas size based on window dimensions and padding
+  // კენვასის ზომის განახლება ეკრანის შესაბამისად
   function updateCanvasSize() {
     canvas.width = window.innerWidth - PADDING * 2;
     canvas.height = window.innerHeight - PADDING * 2;
   }
 
-  // Set initial canvas size
-  updateCanvasSize();
+  updateCanvasSize(); // საწყისი ზომის დაყენება
 
-  // Create and initialize the game
-  const game = new AviatorGame(ctx, canvas.width, canvas.height);
+  const game = new AviatorGame(ctx, canvas.width, canvas.height); // თამაშის ობიექტის შექმნა
+  window.aviatorGame = game; // გლობალურად ხელმისაწვდომობა
+  game.startAnimation(); // ანიმაციის დაწყება
 
-  // Make game accessible via window (e.g., for debugging)
-  window.aviatorGame = game;
-
-  // Start the animation
-  game.startAnimation();
-
-  // Update game and canvas when window is resized
+  // ეკრანის ცვლილებაზე რეაგირება
   const handleResize = () => {
     updateCanvasSize();
     game.width = canvas.width;
@@ -326,8 +334,7 @@ export const initializeGame = (canvas, multiplierDisplay) => {
     game.reset();
   };
 
-  window.addEventListener("resize", handleResize);
+  window.addEventListener("resize", handleResize); // ზომის შეცვლის მოვლენაზე მიბმა
 
-  // Return the game instance
-  return game;
+  return game; // თამაშის დაბრუნება
 };

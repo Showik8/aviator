@@ -17,6 +17,8 @@ const Aviator = () => {
         setMultiplier(`${newMultiplier.toFixed(2)}x`);
       });
 
+      
+      
       return () => {
         if (gameRef.current) {
           gameRef.current.stopAnimation();
