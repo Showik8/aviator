@@ -1,24 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import "./canvas.css";
-import { initializeGame } from "./canva";
+import { initializeGame, restarting } from "./canva";
 
-const Aviator = () => {
+const Aviator = ({ multiplier, setMultiplier, StarterOfGame, setLoading }) => {
   const canvasRef = useRef(null);
   const multiplierRef = useRef(null);
-  const [multiplier, setMultiplier] = useState("1.0x");
   const gameRef = useRef(null);
 
   useEffect(() => {
     if (canvasRef.current && multiplierRef.current) {
       const game = initializeGame(canvasRef.current, multiplierRef.current);
-      gameRef.current = game;
 
       game.onMultiplierUpdate((newMultiplier) => {
         setMultiplier(`${newMultiplier.toFixed(2)}x`);
       });
 
-      
-      
       return () => {
         if (gameRef.current) {
           gameRef.current.stopAnimation();
@@ -40,5 +36,4 @@ const Aviator = () => {
     </>
   );
 };
-
 export default Aviator;

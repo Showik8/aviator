@@ -90,7 +90,7 @@ class AviatorGame {
     }
 
     this.ctx.closePath();
-    this.ctx.fillStyle = "rgba(155, 7, 7, 0.82)";
+    this.ctx.fillStyle = "rgba(181, 0, 0, 0.82)";
     this.ctx.fill();
   }
 
@@ -106,7 +106,7 @@ class AviatorGame {
         this.x + this.planeWidth / 2,
         this.y + this.planeHeight / 2
       );
-      this.ctx.rotate((-1 * Math.PI) / 180);
+      this.ctx.rotate((-1 * 2.3) / 180);
       this.ctx.globalCompositeOperation = "source-over";
       this.ctx.drawImage(
         this.planeImage,

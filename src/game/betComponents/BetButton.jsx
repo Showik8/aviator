@@ -1,69 +1,62 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { buttonRecord } from "../../utils/_utils";
 
-const BetButton = ({ gameIsStarted, betAmount, setBetActive, }) => {
+const BetButton = ({
+  winRatio,
+  gameIsStarted,
+  betAmount,
+  betActive,
+  setBetActive,
+}) => {
   const [state, setState] = useState("bet");
+  const ButtonRef = useRef();
 
   useEffect(() => {
-    if (gameIsStarted) {
-      setState("waiting");
-    } else {
-      setState("bet");
-    }
+    gameIsStarted ? setState("waiting") : setState("bet");
   }, [gameIsStarted]);
-
 
   const handleClick = () => {
     setBetActive((pre) => !pre);
 
-    if (!gameIsStarted) {
-      if (state === "bet") {
-        setState("cancel");
-      } else if (state === "cancel") {
-        setState("cashout");
-      } else if (state === "cashout") {
-        setState("bet");
-      }
-    }
-
-  };
-
-  const getButtonClass = () => {
-    if (state == "bet") {
-      return "#37a003";
-    } else if (state == "cancel") {
-      return "#ff1f1f";
-    } else if (state == "cashout") {
-      return "#e79823";
-    } else {
-      return "#ff1f1f";
-    }
-  };
-
-  const getButtonText = () => {
-    if (state == "bet") {
-      return "Bet";
-    } else if (state == "cancel") {
-      return "Cancel";
-    } else if (state == "cashout") {
-      return "Cash Out";
-    }
-    //  else {
-    //   return "Waiting";
+    // if (!gameIsStarted) {
+    //   if (state === "bet") {
+    //     setState("cancel");
+    //   } else if (state === "cancel") {
+    //     setState("cashout");
+    //   } else if (state === "cashout") {
+    //     setState("bet");
+    //   }
     // }
+
+    if (gameIsStarted && betActive) {
+      setState("cashout");
+    }
+
+    if (gameIsStarted && !betActive) {
+      setState("waiting");
+    }
+
+    if (!gameIsStarted && betActive) {
+      setState("cancel");
+    }
   };
 
-  let buttonColor = getButtonClass();
+  let buttonColor = buttonRecord[state].color;
+  let buttonText = buttonRecord[state].text;
 
   return (
-    <div
+    <button
+      ref={ButtonRef}
       onClick={handleClick}
+      disabled={state === "waiting"}
       className={"betButton"}
       style={{ backgroundColor: buttonColor }}
     >
-      {getButtonText()}
+      {buttonText}
       <br />
-      {gameIsStarted ? null : `${betAmount.toFixed(2)} GEL`}
-    </div>
+      {/* {gameIsStarted && !betActive ? `${betAmount.toFixed(2)} GEL` : null} */}
+      {/* {gameIsStarted && betActive ? winRatio : null} */}
+    </button>
   );
 };
 

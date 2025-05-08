@@ -85,9 +85,9 @@
   font-size: 12px;
   display: flex;
   align-items: center;
-  gap:10px;
+  gap: 10px;
 
-  .clock{
+  .clock {
     width: 20px;
     height: 20px;
   }
@@ -121,21 +121,20 @@
   }
 }
 
-.playerCard{
-  color:white;
-  width:100%;
+.playerCard {
+  color: white;
+  width: 100%;
   border: 1px solid greenyellow;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 3.5px 10.5px 3.5px 7.5px;
   border-radius: 14px;
   margin-top: 6px;
-
 }
-.wrapper{
- display: inline-flex;
- gap:1rem;
+.playerCardWrapper {
+  display: inline-flex;
+  gap: 1.5rem;
 }
-.playerProfile{
- 
+.playerProfile {
+  display: inline-flex;
 }

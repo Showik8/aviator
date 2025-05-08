@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import AutoHandler from "../betComponents/autoHandler";
 import BetButton from "../betComponents/BetButton";
 import BetSmallButtons from "../betComponents/BetSmallButtons";
@@ -6,15 +6,14 @@ import BetInput from "../betComponents/BetInput";
 
 import "./betControler.css";
 
-
-
-const BetControler = ({ gameIsStarted, StarterOfGame }) => {
-  const [betAmount, setbetAmount] = useState(1);
+const BetControler = ({ gameIsStarted, StarterOfGame, multiplier }) => {
+  const [betAmount, setbetAmount] = useState(1.0);
   const [inputValue, setInputValue] = useState(1);
   const [autoBetActive, setAutoBetActive] = useState(false);
   const [cashOut, setAutoChashOut] = useState(false);
   const [betActive, setBetActive] = useState(false);
-  const [bet, setBet] = useState(false);
+
+  let winRatio = parseFloat(multiplier) * betAmount;
 
   useEffect(() => {
     setInputValue(betAmount);
@@ -56,6 +55,7 @@ const BetControler = ({ gameIsStarted, StarterOfGame }) => {
             setBetActive={setBetActive}
             gameIsStarted={gameIsStarted}
             betAmount={betAmount}
+            winRatio={winRatio}
           />
         </div>
 

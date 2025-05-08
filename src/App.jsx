@@ -1,13 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
-import Head from "./sections/Head";
-import Home from "./sections/Home";
-import AboutUs from "./sections/AboutUs";
-import Concept from "./sections/Concept";
-import WhyUs from "./sections/WhyUs";
-import FAQ from "./sections/Faq";
+import { FAQ, AboutUs, Head, Home, Concept, WhyUs } from "./sections/index";
 
 import Game from "./pages/Game";
 import Error404Page from "./pages/Error404Page";
@@ -41,18 +35,30 @@ function App() {
     };
   }, []);
 
+  const routesConfig = [
+    {
+      path: "/",
+      element: <HomePageLayout width={width} />,
+    },
+    {
+      path: "/game",
+      element: (
+        <Games>
+          <Game />
+        </Games>
+      ),
+    },
+    {
+      path: "/404",
+      element: <Error404Page />,
+    },
+  ];
+
   return (
     <Routes>
-      <Route path="/" element={<HomePageLayout width={width} />} />
-      <Route
-        path="/game"
-        element={
-          <Games>
-            <Game />
-          </Games>
-        }
-      />
-      <Route path="/404" element={<Error404Page />} />
+      {routesConfig.map((route, index) => (
+        <Route key={index} path={route.path} element={route.element} />
+      ))}
     </Routes>
   );
 }
