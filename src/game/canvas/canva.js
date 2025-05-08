@@ -90,7 +90,7 @@ class AviatorGame {
     }
 
     this.ctx.closePath();
-    this.ctx.fillStyle = "rgba(155, 7, 7, 0.82)";
+    this.ctx.fillStyle = "#9b0707";
     this.ctx.fill();
   }
 

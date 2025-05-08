@@ -4,8 +4,9 @@ import TabSwitcher from "../game/gameMenu/TabSwitcher";
 import PlayersList from "../game/gameMenu/PlayersList";
 import Aviator from "../game/canvas/Aviator";
 
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext, useState, useEffect } from "react";
 import { GameStarterContext } from "./GameStarterContext";
+import { Atom } from "react-loading-indicators";
 
 import "../styles/game.css";
 
@@ -14,6 +15,21 @@ const Game = () => {
   const fullscreenElement = useRef(null);
   const [multiplier, setMultiplier] = useState("1.0x");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const game = window.aviatorGame || null;
+
+    if (game.flyingAway) {
+      setTimeout(() => {
+        setLoading(true);
+      }, 2000);
+    }
+
+    if (loading) {
+      setLoading(false);
+      game.reset();
+    }
+  }, [window.aviatorGame?.flyingAway]);
 
   return (
     <>
@@ -24,12 +40,24 @@ const Game = () => {
           <PlayersList />
         </div>
         <div className="canva">
-          <Aviator
-            setLoading={setLoading}
-            StarterOfGame={StarterOfGame}
-            multiplier={multiplier}
-            setMultiplier={setMultiplier}
-          />
+          {loading ? (
+            <div className="loadingAnimation">
+              <Atom
+                color="#9b0707"
+                size="large"
+                text="Waiting Next Round"
+                textColor="White"
+              />
+            </div>
+          ) : (
+            <Aviator
+              setLoading={setLoading}
+              StarterOfGame={StarterOfGame}
+              multiplier={multiplier}
+              setMultiplier={setMultiplier}
+            />
+          )}
+
           <div className="betButtons">
             <BetControler
               multiplier={multiplier}
