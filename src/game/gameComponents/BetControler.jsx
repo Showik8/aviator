@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import AutoHandler from "../betComponents/autoHandler";
+import AutoHandler from "../betComponents/AutoHandler";
 import BetButton from "../betComponents/BetButton";
 import BetSmallButtons from "../betComponents/BetSmallButtons";
 import BetInput from "../betComponents/BetInput";
