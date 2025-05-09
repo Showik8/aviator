@@ -1,43 +1,50 @@
 import { useEffect, useState, useRef } from "react";
 import { buttonRecord } from "../../utils/_utils";
+import { useGameStore } from "../../../states/useGameStore";
+import toast, { Toaster } from "react-hot-toast";
 
-const BetButton = ({
-  winRatio,
-  gameIsStarted,
-  betAmount,
-  betActive,
-  setBetActive,
-}) => {
+const BetButton = ({ winRatio, betActive, setBetActive }) => {
   const [state, setState] = useState("bet");
   const ButtonRef = useRef();
+  const youWin = () => toast.success(`Congratulation You Win ${winRatio}.GEL`);
+
+  const { gameState, setWin, flyAway, lose, setLose } = useGameStore();
 
   useEffect(() => {
-    gameIsStarted && !betActive ? setState("waiting") : setState("bet");
-  }, [gameIsStarted]);
+    gameState == "Started" && !betActive
+      ? setState("waiting")
+      : setState("bet");
+  }, [gameState]);
+  //
+
+  //
+  useEffect(() => {
+    if (betActive && gameState == "Started") {
+      setState("cashout");
+    }
+
+    if (betActive && gameState !== "Started") {
+      setState("cancel");
+    }
+
+    if (flyAway && betActive && gameState == "Started") {
+      setState("waiting");
+      setLose(true);
+    }
+  }, [betActive, gameState, flyAway]);
 
   const handleClick = () => {
     setBetActive((pre) => !pre);
 
-    if (!gameIsStarted && !betActive) {
-      if (state === "bet") {
-        setState("cancel");
-      } else if (state === "cancel") {
-        setState("cashout");
-      } else if (state === "cashout") {
-        setState("bet");
-      }
+    if (state === "cancel") {
+      setState("bet");
     }
 
-    if (gameIsStarted && betActive) {
-      setState("cashout");
-    }
-
-    if (gameIsStarted && !betActive) {
+    if (state === "cashout") {
+      setBetActive(false);
       setState("waiting");
-    }
-
-    if (!gameIsStarted && betActive) {
-      setState("cancel");
+      youWin();
+      setWin(true);
     }
   };
 
@@ -45,18 +52,20 @@ const BetButton = ({
   let buttonText = buttonRecord[state].text;
 
   return (
-    <button
-      ref={ButtonRef}
-      onClick={handleClick}
-      disabled={state === "waiting"}
-      className={"betButton"}
-      style={{ backgroundColor: buttonColor }}
-    >
-      {buttonText}
-      <br />
-      {gameIsStarted && betActive ? `${betAmount.toFixed(2)} GEL` : null}
-      {/* {gameIsStarted && !betActive ? winRatio : null} */}
-    </button>
+    <>
+      <button
+        ref={ButtonRef}
+        onClick={handleClick}
+        disabled={state === "waiting"}
+        className={"betButton"}
+        style={{ backgroundColor: buttonColor }}
+      >
+        {buttonText}
+        <br />
+        {gameState == "Started" && betActive ? winRatio : null}
+      </button>
+      <Toaster position="top-right" />
+    </>
   );
 };
 

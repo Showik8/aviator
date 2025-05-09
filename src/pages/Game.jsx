@@ -4,18 +4,17 @@ import TabSwitcher from "../game/gameMenu/TabSwitcher";
 import PlayersList from "../game/gameMenu/PlayersList";
 import Aviator from "../game/canvas/Aviator";
 
-import { useRef, useContext, useState, useEffect } from "react";
-import { GameStarterContext } from "./GameStarterContext";
+import { useRef, useState, useEffect } from "react";
 import { Atom } from "react-loading-indicators";
+import { useGameStore } from "../../states/useGameStore";
 
 import "../styles/game.css";
 
 const Game = () => {
-  const { GameIsStarted, StarterOfGame } = useContext(GameStarterContext);
   const fullscreenElement = useRef(null);
   const [multiplier, setMultiplier] = useState("1.0x");
-  const [loading, setLoading] = useState(false);
-  const [flyAway, setFlyAway] = useState(false);
+
+  const { gameState, setGameState, setFlyAway } = useGameStore();
 
   useEffect(() => {
     const game = window.aviatorGame || null;
@@ -24,13 +23,13 @@ const Game = () => {
       if (game.flyingAway) {
         setFlyAway(true);
         setTimeout(() => {
-          setLoading(true);
-          StarterOfGame(false);
+          setGameState("loading");
         }, 2000);
       }
 
-      if (loading) {
-        setLoading(false);
+      if (gameState == "loading") {
+        setGameState("Started");
+        setFlyAway(false);
         game.reset();
       }
     }
@@ -45,7 +44,7 @@ const Game = () => {
           <PlayersList />
         </div>
         <div className="canva">
-          {loading ? (
+          {gameState == "loading" ? (
             <div className="loadingAnimation">
               <Atom
                 color="#9b0707"
@@ -55,25 +54,12 @@ const Game = () => {
               />
             </div>
           ) : (
-            <Aviator
-              setLoading={setLoading}
-              StarterOfGame={StarterOfGame}
-              multiplier={multiplier}
-              setMultiplier={setMultiplier}
-            />
+            <Aviator multiplier={multiplier} setMultiplier={setMultiplier} />
           )}
 
           <div className="betButtons">
-            <BetControler
-              flyAway={flyAway}
-              multiplier={multiplier}
-              gameIsStarted={GameIsStarted}
-            />
-            <BetControler
-              flyAway={flyAway}
-              multiplier={multiplier}
-              gameIsStarted={GameIsStarted}
-            />
+            <BetControler multiplier={multiplier} />
+            <BetControler multiplier={multiplier} />
           </div>
         </div>
       </div>

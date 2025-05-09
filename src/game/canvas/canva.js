@@ -177,7 +177,6 @@ class AviatorGame {
       }
 
       if (this.currentMultiplier > this.secretNum) {
-        restarting = true;
         this.restarting = true;
         this.flyingAway = true;
         this.finalMultiplier = this.currentMultiplier;

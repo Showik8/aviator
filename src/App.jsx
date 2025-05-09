@@ -42,11 +42,7 @@ function App() {
     },
     {
       path: "/game",
-      element: (
-        <Games>
-          <Game />
-        </Games>
-      ),
+      element: <Game />,
     },
     {
       path: "/404",

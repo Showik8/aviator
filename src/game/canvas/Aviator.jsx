@@ -1,14 +1,18 @@
 import { useEffect, useRef } from "react";
 import "./canvas.css";
 import { initializeGame } from "./canva";
+import { useGameStore } from "../../../states/useGameStore";
 
-const Aviator = ({ multiplier, setMultiplier, StarterOfGame }) => {
+const Aviator = ({ multiplier, setMultiplier }) => {
+  const { setGameState } = useGameStore();
+
   const canvasRef = useRef(null);
   const multiplierRef = useRef(null);
   const gameRef = useRef(null);
+
   useEffect(() => {
     if (canvasRef.current && multiplierRef.current) {
-      StarterOfGame(true);
+      setGameState("Started");
       const game = initializeGame(canvasRef.current, multiplierRef.current);
 
       game.onMultiplierUpdate((newMultiplier) => {
