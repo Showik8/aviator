@@ -7,7 +7,6 @@ const AutoHandler = ({
   betActive,
   setAutoChashOut,
 }) => {
-
   return (
     <div className="autoHandler">
       <div className="smallebi">
@@ -31,7 +30,7 @@ const AutoHandler = ({
           onChange={() => null}
           className="smallAutoInput"
           type="number"
-          value={5.0}
+          value={"5.0"}
         />
       </div>
     </div>

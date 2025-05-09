@@ -1,12 +1,13 @@
-import React, { useState, useRef } from "react";
+import { useState } from "react";
 import logo from "../gameAssets/logo.svg";
 import FullscreenComponent from "./FullScreen";
 
 import "../../styles/gameMenu.css";
 import BurgerMenu from "./BurgerMenu";
+import { userStore } from "../../../states/userStore";
 
 const SubHeader = ({ fullscreenElement }) => {
-  const [userMoneyAmount, setUserMoneyAmount] = useState(1000);
+  const { userMoneyAmount } = userStore();
 
   return (
     <>
@@ -14,10 +15,10 @@ const SubHeader = ({ fullscreenElement }) => {
         <img src={logo} alt="Aviator Logo" />
         <div className="controler">
           <span>
-            <strong>{userMoneyAmount.toFixed(2)}</strong> GEL
+            <strong>{userMoneyAmount}</strong> GEL
           </span>
           <FullscreenComponent fullscreenElement={fullscreenElement} />
-          <BurgerMenu/>
+          <BurgerMenu />
         </div>
       </div>
     </>

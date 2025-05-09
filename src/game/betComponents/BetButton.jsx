@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { buttonRecord } from "../../utils/_utils";
 import { useGameStore } from "../../../states/useGameStore";
 import toast, { Toaster } from "react-hot-toast";
+import { userStore } from "../../../states/userStore";
 
 const BetButton = ({ winRatio, betActive, setBetActive }) => {
   const [state, setState] = useState("bet");
@@ -9,6 +10,7 @@ const BetButton = ({ winRatio, betActive, setBetActive }) => {
   const youWin = () => toast.success(`Congratulation You Win ${winRatio}.GEL`);
 
   const { gameState, setWin, flyAway, lose, setLose } = useGameStore();
+  const { setUserMoneyAmount } = userStore();
 
   useEffect(() => {
     gameState == "Started" && !betActive
@@ -29,7 +31,8 @@ const BetButton = ({ winRatio, betActive, setBetActive }) => {
 
     if (flyAway && betActive && gameState == "Started") {
       setState("waiting");
-      setLose(true);
+      setUserMoneyAmount(-winRatio);
+      setBetActive(false);
     }
   }, [betActive, gameState, flyAway]);
 
@@ -44,6 +47,7 @@ const BetButton = ({ winRatio, betActive, setBetActive }) => {
       setBetActive(false);
       setState("waiting");
       youWin();
+      setUserMoneyAmount(+winRatio);
       setWin(true);
     }
   };

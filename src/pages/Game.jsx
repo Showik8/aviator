@@ -37,7 +37,7 @@ const Game = () => {
 
   return (
     <>
-      <div ref={fullscreenElement} className="testing">
+      <div ref={fullscreenElement} className="statistic">
         <div className="gameMenu">
           <SubHeader fullscreenElement={fullscreenElement} />
           <TabSwitcher />

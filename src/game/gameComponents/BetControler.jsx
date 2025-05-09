@@ -3,7 +3,6 @@ import AutoHandler from "../betComponents/AutoHandler";
 import BetButton from "../betComponents/BetButton";
 import BetSmallButtons from "../betComponents/BetSmallButtons";
 import BetInput from "../betComponents/BetInput";
-import BetButtoni from "../betComponents/BetButton";
 
 import "./betControler.css";
 
@@ -11,10 +10,10 @@ const BetControler = ({ multiplier }) => {
   const [betAmount, setbetAmount] = useState(1.0);
   const [inputValue, setInputValue] = useState(1);
   const [autoBetActive, setAutoBetActive] = useState(false);
-  const [cashOut, setAutoChashOut] = useState(false);
+  const [autoCashOut, setAutoChashOut] = useState(false);
   const [betActive, setBetActive] = useState(false);
 
-  let winRatio = parseFloat(multiplier) * betAmount;
+  let winRatio = (parseFloat(multiplier) * betAmount).toFixed(2);
 
   useEffect(() => {
     setInputValue(betAmount);
@@ -61,7 +60,7 @@ const BetControler = ({ multiplier }) => {
 
         <AutoHandler
           autoBetActive={autoBetActive}
-          autoCashOut={cashOut}
+          autoCashOut={autoCashOut}
           betActiv={betActive}
           setAutoBetActive={setAutoBetActive}
           setAutoChashOut={setAutoChashOut}
