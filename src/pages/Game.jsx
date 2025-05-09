@@ -15,19 +15,24 @@ const Game = () => {
   const fullscreenElement = useRef(null);
   const [multiplier, setMultiplier] = useState("1.0x");
   const [loading, setLoading] = useState(false);
+  const [flyAway, setFlyAway] = useState(false);
 
   useEffect(() => {
     const game = window.aviatorGame || null;
 
-    if (game.flyingAway) {
-      setTimeout(() => {
-        setLoading(true);
-      }, 2000);
-    }
+    if (game) {
+      if (game.flyingAway) {
+        setFlyAway(true);
+        setTimeout(() => {
+          setLoading(true);
+          StarterOfGame(false);
+        }, 2000);
+      }
 
-    if (loading) {
-      setLoading(false);
-      game.reset();
+      if (loading) {
+        setLoading(false);
+        game.reset();
+      }
     }
   }, [window.aviatorGame?.flyingAway]);
 
@@ -60,10 +65,15 @@ const Game = () => {
 
           <div className="betButtons">
             <BetControler
+              flyAway={flyAway}
               multiplier={multiplier}
               gameIsStarted={GameIsStarted}
             />
-            <BetControler gameIsStarted={GameIsStarted} />
+            <BetControler
+              flyAway={flyAway}
+              multiplier={multiplier}
+              gameIsStarted={GameIsStarted}
+            />
           </div>
         </div>
       </div>

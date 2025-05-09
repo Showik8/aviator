@@ -3,15 +3,17 @@ import AutoHandler from "../betComponents/AutoHandler";
 import BetButton from "../betComponents/BetButton";
 import BetSmallButtons from "../betComponents/BetSmallButtons";
 import BetInput from "../betComponents/BetInput";
+import BetButtoni from "../betComponents/BetButtoni";
 
 import "./betControler.css";
 
-const BetControler = ({ gameIsStarted, StarterOfGame, multiplier }) => {
+const BetControler = ({ gameIsStarted, multiplier, flyAway }) => {
   const [betAmount, setbetAmount] = useState(1.0);
   const [inputValue, setInputValue] = useState(1);
   const [autoBetActive, setAutoBetActive] = useState(false);
   const [cashOut, setAutoChashOut] = useState(false);
   const [betActive, setBetActive] = useState(false);
+  const [win, setWin] = useState(false);
 
   let winRatio = parseFloat(multiplier) * betAmount;
 
@@ -50,12 +52,13 @@ const BetControler = ({ gameIsStarted, StarterOfGame, multiplier }) => {
             />
             <BetSmallButtons setbetAmount={setbetAmount} />
           </div>
-          <BetButton
+          <BetButtoni
             betActive={betActive}
             setBetActive={setBetActive}
             gameIsStarted={gameIsStarted}
             betAmount={betAmount}
             winRatio={winRatio}
+            setWin={setWin}
           />
         </div>
 

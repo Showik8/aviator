@@ -7,6 +7,7 @@ const BetButton = ({
   betAmount,
   betActive,
   setBetActive,
+  setWin,
 }) => {
   const [state, setState] = useState("bet");
   const ButtonRef = useRef();
@@ -14,30 +15,30 @@ const BetButton = ({
   useEffect(() => {
     gameIsStarted && !betActive ? setState("waiting") : setState("bet");
   }, [gameIsStarted]);
+  //
+
+  //
+  useEffect(() => {
+    if (betActive && gameIsStarted) {
+      setState("cashout");
+    }
+
+    if (betActive && !gameIsStarted) {
+      setState("cancel");
+    }
+  }, [betActive, gameIsStarted]);
 
   const handleClick = () => {
     setBetActive((pre) => !pre);
 
-    if (!gameIsStarted && !betActive) {
-      if (state === "bet") {
-        setState("cancel");
-      } else if (state === "cancel") {
-        setState("cashout");
-      } else if (state === "cashout") {
-        setState("bet");
-      }
+    if (state === "cancel") {
+      setState("bet");
     }
 
-    if (gameIsStarted && betActive) {
-      setState("cashout");
-    }
-
-    if (gameIsStarted && !betActive) {
-      setState("waiting");
-    }
-
-    if (!gameIsStarted && betActive) {
-      setState("cancel");
+    if (state === "cashout") {
+      console.log("winner");
+      setWin(true);
+      setBetActive(false);
     }
   };
 
@@ -54,8 +55,7 @@ const BetButton = ({
     >
       {buttonText}
       <br />
-      {gameIsStarted && betActive ? `${betAmount.toFixed(2)} GEL` : null}
-      {/* {gameIsStarted && !betActive ? winRatio : null} */}
+      {gameIsStarted && betActive ? winRatio : null}
     </button>
   );
 };
