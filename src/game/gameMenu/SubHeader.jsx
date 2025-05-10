@@ -15,7 +15,7 @@ const SubHeader = ({ fullscreenElement }) => {
         <img src={logo} alt="Aviator Logo" />
         <div className="controler">
           <span>
-            <strong>{userMoneyAmount}</strong> GEL
+            <strong>{userMoneyAmount.toFixed(2)}</strong> GEL
           </span>
           <FullscreenComponent fullscreenElement={fullscreenElement} />
           <BurgerMenu />

@@ -1,11 +1,9 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { FAQ, AboutUs, Head, Home, Concept, WhyUs } from "./sections/index";
 
 import Game from "./pages/Game";
 import Error404Page from "./pages/Error404Page";
-import { Games } from "./pages/GameStarterContext";
 
 function HomePageLayout({ width }) {
   return (

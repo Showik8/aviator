@@ -3,38 +3,47 @@ import { buttonRecord } from "../../utils/_utils";
 import { useGameStore } from "../../../states/useGameStore";
 import toast, { Toaster } from "react-hot-toast";
 import { userStore } from "../../../states/userStore";
+import { useBetStore } from "../../../states/useBetStore";
 
-const BetButton = ({ winRatio, betActive, setBetActive }) => {
+const BetButton = ({
+  winRatio,
+  betActive,
+  setBetActive,
+  youWin,
+  betAmount,
+}) => {
   const [state, setState] = useState("bet");
   const ButtonRef = useRef();
-  const youWin = () => toast.success(`Congratulation You Win ${winRatio}.GEL`);
+  const youWinMessage = () =>
+    toast.success(`Congratulation You Win ${winRatio}.GEL`);
 
-  const { gameState, setWin, flyAway, lose, setLose } = useGameStore();
+  const { gameState, flyAway } = useGameStore();
   const { setUserMoneyAmount } = userStore();
+  const { setBetActivated, setBetProps } = useBetStore();
 
   useEffect(() => {
     gameState == "Started" && !betActive
       ? setState("waiting")
       : setState("bet");
   }, [gameState]);
-  //
 
-  //
   useEffect(() => {
     if (betActive && gameState == "Started") {
       setState("cashout");
     }
 
     if (betActive && gameState !== "Started") {
+      setBetProps({ betAmount });
       setState("cancel");
     }
 
     if (flyAway && betActive && gameState == "Started") {
       setState("waiting");
-      setUserMoneyAmount(-winRatio);
+      setUserMoneyAmount(-betAmount);
       setBetActive(false);
     }
-  }, [betActive, gameState, flyAway]);
+    setBetActivated(betActive);
+  }, [betActive, gameState, flyAway, betAmount]);
 
   const handleClick = () => {
     setBetActive((pre) => !pre);
@@ -46,9 +55,9 @@ const BetButton = ({ winRatio, betActive, setBetActive }) => {
     if (state === "cashout") {
       setBetActive(false);
       setState("waiting");
+      youWinMessage();
       youWin();
       setUserMoneyAmount(+winRatio);
-      setWin(true);
     }
   };
 

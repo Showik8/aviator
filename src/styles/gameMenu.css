@@ -61,6 +61,12 @@
   flex-direction: column;
   height: auto;
 }
+.playerPicture {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
 
 .totalBets {
   display: flex;
@@ -124,12 +130,21 @@
 .playerCard {
   color: white;
   width: 100%;
-  border: 1px solid greenyellow;
+  border: 1px solid white;
   display: flex;
   justify-content: space-between;
   padding: 3.5px 10.5px 3.5px 7.5px;
   border-radius: 14px;
   margin-top: 6px;
+}
+.playerCard.winner {
+  border: 1px solid #28a745;
+}
+.winnerMultiplier {
+  border-radius: 10px;
+  background-color: green;
+  font-size: 12px;
+  padding: 5px;
 }
 .playerCardWrapper {
   display: inline-flex;

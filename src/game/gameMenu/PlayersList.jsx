@@ -1,7 +1,12 @@
-import PlayerCard from "./PlayerCard"
-import clock from "../gameAssets/clock.svg"
+import PlayerCard from "./PlayerCard";
+import clock from "../gameAssets/clock.svg";
+
+import { userStore } from "../../../states/userStore";
+import users from "../../../fakeUsers/fakeUsers";
 
 const PlayersList = () => {
+  const { userPicture, userName } = userStore();
+
   let totalBets = 0;
   return (
     <>
@@ -21,11 +26,7 @@ const PlayersList = () => {
             <span>Win</span>
           </div>
           <div className="playersCards">
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
+            <PlayerCard userName={userName} userPicture={userPicture} />
           </div>
         </div>
       </div>

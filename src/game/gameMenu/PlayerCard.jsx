@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useBetStore } from "../../../states/useBetStore";
 
-const PlayerCard = () => {
+const PlayerCard = ({ userName, userPicture }) => {
+  const { betProps, betActivated } = useBetStore();
+
+  const { multiplier, winRatio, betAmount } = betProps || {};
+  console.log(betAmount);
+
   return (
-    <div className="playerCard">
+    <div className={`playerCard ${winRatio ? "winner" : ""}`}>
       <div className="playerCardWrapper">
         <div className="playerProfile">
-          <span>username</span>
+          <img src={userPicture} alt="User Picture" className="playerPicture" />
+          <span>{userName}</span>
         </div>
-        <span>Bet </span>
+        <span>
+          {winRatio ? (
+            <>
+              <span>{betAmount} </span>
+              <span className="winnerMultiplier">{multiplier}</span>
+            </>
+          ) : (
+            <span>{betAmount} </span>
+          )}
+        </span>
       </div>
-
-      <span>Win Amount</span>
+      {betProps ? <span>{winRatio}</span> : null}
     </div>
   );
 };

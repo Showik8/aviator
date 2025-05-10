@@ -6,6 +6,8 @@ const AutoHandler = ({
   autoCashOut,
   betActive,
   setAutoChashOut,
+  setAutoCashOutBetAmount,
+  autoCashOutBetAmount,
 }) => {
   return (
     <div className="autoHandler">
@@ -27,10 +29,10 @@ const AutoHandler = ({
           <div className="oval"></div>
         </div>
         <input
-          onChange={() => null}
+          onChange={(e) => setAutoCashOutBetAmount(e.target.value)}
           className="smallAutoInput"
           type="number"
-          value={"5.0"}
+          value={autoCashOutBetAmount}
         />
       </div>
     </div>
