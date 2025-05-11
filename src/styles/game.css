@@ -47,3 +47,32 @@
   z-index: 100;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0a0f18 100%);
 }
+
+@media screen and (max-width: 1000px) {
+  .statistic {
+    flex-direction: column-reverse;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .canva {
+    margin-top: 60px;
+    width: 100%;
+    height: 1000px;
+  }
+  .SubHeader {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    background-color: black;
+  }
+  .gameMenu {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .betButtons {
+    flex-direction: column;
+  }
+}

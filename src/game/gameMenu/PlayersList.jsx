@@ -2,7 +2,6 @@ import PlayerCard from "./PlayerCard";
 import clock from "../gameAssets/clock.svg";
 
 import { userStore } from "../../../states/userStore";
-import users from "../../../fakeUsers/fakeUsers";
 
 const PlayersList = () => {
   const { userPicture, userName } = userStore();

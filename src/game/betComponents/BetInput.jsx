@@ -1,6 +1,9 @@
-import React from 'react'
-
-const BetInput = ({inputValue,decreaseBetAmount,setbetAmount,encreaseBetAmount}) => {
+const BetInput = ({
+  inputValue,
+  decreaseBetAmount,
+  setbetAmount,
+  encreaseBetAmount,
+}) => {
   return (
     <div className="inputDiv">
       <span onClick={() => decreaseBetAmount(inputValue)}>-</span>
@@ -13,6 +16,6 @@ const BetInput = ({inputValue,decreaseBetAmount,setbetAmount,encreaseBetAmount})
       <span onClick={() => encreaseBetAmount(inputValue)}>+</span>
     </div>
   );
-}
+};
 
-export default BetInput
+export default BetInput;

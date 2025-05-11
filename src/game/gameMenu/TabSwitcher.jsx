@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../../styles/gameMenu.css";
 
 const TabSwitcher = () => {
@@ -22,7 +22,6 @@ const TabSwitcher = () => {
       >
         My Bets
       </button>
-
     </div>
   );
 };

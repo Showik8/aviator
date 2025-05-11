@@ -4,7 +4,7 @@ import {
   BetButton,
   BetSmallButtons,
   BetInput,
-} from "../betComponents/index";
+} from "../betComponents/index.js";
 
 import { useBetStore } from "../../../states/useBetStore";
 

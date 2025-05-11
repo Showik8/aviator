@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
 import { useBetStore } from "../../../states/useBetStore";
 
 const PlayerCard = ({ userName, userPicture }) => {
   const { betProps, betActivated } = useBetStore();
 
   const { multiplier, winRatio, betAmount } = betProps || {};
-  console.log(betAmount);
 
   return (
     <div className={`playerCard ${winRatio ? "winner" : ""}`}>

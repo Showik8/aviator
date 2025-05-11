@@ -1,12 +1,9 @@
-import React from 'react'
+const BetSmallButtons = ({ setbetAmount }) => {
+  const suggestedNumbers = [1, 2, 25, 100];
 
-const BetSmallButtons = ({setbetAmount}) => {
-      const suggestedNumbers = [1, 2, 25, 100];
-
-
-     const enterFixedBet = (value) => {
-       setbetAmount(value);
-     };
+  const enterFixedBet = (value) => {
+    setbetAmount(value);
+  };
   return (
     <div className="betSmallButtons">
       {suggestedNumbers.map((n) => (
@@ -16,6 +13,6 @@ const BetSmallButtons = ({setbetAmount}) => {
       ))}
     </div>
   );
-}
+};
 
-export default BetSmallButtons
+export default BetSmallButtons;

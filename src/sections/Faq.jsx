@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import planeIcon from "../assets/planeIcon.png";
 import secondIcon from "../assets/secondIcon.png";
 import patent from "../assets/patent.png";
@@ -33,7 +33,10 @@ function FAQ() {
         "When did the first use of Aviator brand in gambling take place?",
       answer: (
         <p>
-          First use of Aviator brand in gambling took place in the beginning of 2018 when land casino Aviator was opened in Tbilisi and soon after its opening, a live stream from the casino was placed on Adjarabet platform using the same branding.
+          First use of Aviator brand in gambling took place in the beginning of
+          2018 when land casino Aviator was opened in Tbilisi and soon after its
+          opening, a live stream from the casino was placed on Adjarabet
+          platform using the same branding.
         </p>
       ),
     },

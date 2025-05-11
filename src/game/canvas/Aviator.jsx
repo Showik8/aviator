@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./canvas.css";
-import { initializeGame } from "./canva";
+import { initializeGame } from "./canva.js";
 import { useGameStore } from "../../../states/useGameStore";
 
 const Aviator = ({ multiplier, setMultiplier }) => {

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const BurgerMenu = () => {
@@ -36,10 +35,10 @@ const StyledWrapper = styled.div`
     backdrop-filter: blur(15px);
     width: 40px;
     height: 40px;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-left:5px;
+    margin-left: 5px;
   }
 
   /* <style for menu__icon> ======== */

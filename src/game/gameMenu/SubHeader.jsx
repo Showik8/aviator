@@ -1,4 +1,3 @@
-import { useState } from "react";
 import logo from "../gameAssets/logo.svg";
 import FullscreenComponent from "./FullScreen";
 
