@@ -7,7 +7,10 @@ export default defineConfig({
   build: {
     outDir: "dist",
   },
-  server: {
-    historyApiFallback: true, // 👈 For React Router fallback
-  },
+  rewrites: [
+    {
+      source: "/(.*)",
+      destination: "/",
+    },
+  ],
 });
