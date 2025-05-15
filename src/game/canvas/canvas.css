@@ -102,13 +102,6 @@ input:checked + label {
   color: white;
 }
 
-.app__wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0a0f18 100%);
-}
-
 .bets {
   height: 100%;
   width: 30%;

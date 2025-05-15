@@ -12,6 +12,18 @@
   width: 100%;
 }
 
+.app__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: radial-gradient(
+    ellipse at bottom,
+    #0d1d31 0%,
+    #0a1423 40%,
+    #080c16 100%
+  );
+}
+
 .gameMenu {
   height: 100%;
   width: 33%;
@@ -51,7 +63,7 @@
 @media screen and (max-width: 1000px) {
   .statistic {
     flex-direction: column-reverse;
-    height: 100vh;
+    height: auto;
     overflow-y: scroll;
   }
   .canva {
