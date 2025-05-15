@@ -18,8 +18,8 @@ class AviatorGame {
   initializeGame() {
     restarting = false;
 
-    this.planeWidth = this.width * 0.1;
-    this.planeHeight = this.height * 0.1;
+    this.planeWidth = 100;
+    this.planeHeight = 100;
     this.x = PADDING + 100;
     this.y = this.height - 100;
 

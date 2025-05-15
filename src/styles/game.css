@@ -16,7 +16,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: radial-gradient(
+  background-image: radial-gradient(
     ellipse at bottom,
     #0d1d31 0%,
     #0a1423 40%,
@@ -81,6 +81,10 @@
   .gameMenu {
     width: 100%;
     height: auto;
+  }
+
+  .app__wrapper {
+    height: 80svh;
   }
 }
 
