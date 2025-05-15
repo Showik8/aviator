@@ -16,6 +16,12 @@
   position: relative;
   width: 100%;
   height: 100%;
+  background-image: -webkit-radial-gradient(
+    ellipse at bottom,
+    #0d1d31 0%,
+    #0a1423 40%,
+    #080c16 100%
+  );
   background-image: radial-gradient(
     ellipse at bottom,
     #0d1d31 0%,
