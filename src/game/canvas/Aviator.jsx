@@ -32,11 +32,11 @@ const Aviator = ({ multiplier, setMultiplier }) => {
     <>
       <div className="app__wrapper">
         <div className="flight-path"></div>
-        {multiplier ? (
+        {multiplier && (
           <div ref={multiplierRef} className="multiplier">
             <h3>{multiplier}</h3>
           </div>
-        ) : null}
+        )}
         <canvas ref={canvasRef} id="aviator"></canvas>
       </div>
     </>

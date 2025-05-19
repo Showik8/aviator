@@ -23,13 +23,11 @@ const BetControler = ({ multiplier }) => {
   const { setBetProps } = useBetStore();
 
   function youWin() {
-    const BetInfo = {
+    setBetProps({
       betAmount: betAmount,
       multiplier: multiplier,
       winRatio: winRatio,
-    };
-
-    setBetProps(BetInfo);
+    });
   }
 
   useEffect(() => {
@@ -39,7 +37,7 @@ const BetControler = ({ multiplier }) => {
   const decreaseBetAmount = (value) => {
     switch (true) {
       case value < 0.01:
-        return;
+        break;
       case value == 1:
         setbetAmount(0.1);
         break;

@@ -76,6 +76,7 @@ const BetButton = ({
         {buttonText}
         <br />
         {gameState == "Started" && betActive ? winRatio : null}
+        {gameState == "loading" && betActive ? betAmount.toFixed(2) : null}
       </button>
       <Toaster position="top-right" />
     </>

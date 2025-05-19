@@ -106,7 +106,7 @@ class AviatorGame {
         this.x + this.planeWidth / 2,
         this.y + this.planeHeight / 2
       );
-      this.ctx.rotate((-1 * Math.PI) / 180);
+      this.ctx.rotate((-1 * Math.PI) / 100);
       this.ctx.globalCompositeOperation = "source-over";
       this.ctx.drawImage(
         this.planeImage,

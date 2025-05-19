@@ -1,52 +1,10 @@
-import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { FAQ, AboutUs, Head, Home, Concept, WhyUs } from "./sections/index";
-
-import Game from "./pages/Game";
-import Error404Page from "./pages/Error404Page";
-
-function HomePageLayout({ width }) {
-  return (
-    <>
-      <Head width={width} />
-      <Home width={width} />
-      <AboutUs />
-      <Concept width={width} />
-      <WhyUs />
-      <FAQ />
-    </>
-  );
-}
+import { getRoutesConfig } from "./routes/RoutesConfig";
+import { WindowWidth } from "./utils/WIndowWidth";
 
 function App() {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const routesConfig = [
-    {
-      path: "/",
-      element: <HomePageLayout width={width} />,
-    },
-    {
-      path: "/game",
-      element: <Game />,
-    },
-    {
-      path: "/404",
-      element: <Error404Page />,
-    },
-  ];
+  const width = WindowWidth();
+  const routesConfig = getRoutesConfig(width);
 
   return (
     <Routes>

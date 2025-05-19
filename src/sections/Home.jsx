@@ -3,9 +3,7 @@ import Button from "../components/Button";
 
 import "../styles/component.sass";
 
-
-const Home = ({width}) => {
-
+const Home = ({ width }) => {
   return (
     <section id="home">
       <div className={width >= 1440 ? "divInHome" : "divInHomeResp"}>
@@ -22,7 +20,7 @@ const Home = ({width}) => {
         </p>
         <Button text={"Contact Us"} role={"primary"} />
       </div>
-      {width >= 1440 ? <img src={plane} alt="" /> : null}
+      {width >= 1440 && <img src={plane} alt="Plane" />}
     </section>
   );
 };
