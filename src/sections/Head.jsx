@@ -1,6 +1,3 @@
-import logo from "../assets/logo.png";
-import Button from "../components/Button";
-import Navigation from "../components/Navigation";
 import BigHeader from "../components/headersType/BigHeader";
 import SmallHeader from "../components/headersType/SmallHeader";
 
@@ -26,13 +23,13 @@ const Head = ({ width }) => {
   // }
   // if (displ === "small") {
   //   return (
-  //     <header className="subHeader">
-  //       <div>
-  //         <img src={logo} alt="Company Logo" />
-  //         <Button role={"outlined"} href={"/game"} text={"Demo"} />
-  //       </div>
-  //       <Navigation />
-  //     </header>
+  // <header className="subHeader">
+  //   <div>
+  //     <img src={logo} alt="Company Logo" />
+  //     <Button role={"outlined"} href={"/game"} text={"Demo"} />
+  //   </div>
+  //   <Navigation />
+  // </header>
   //   );
   // }
 
