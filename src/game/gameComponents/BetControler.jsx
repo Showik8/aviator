@@ -66,6 +66,7 @@ const BetControler = ({ multiplier }) => {
             <BetSmallButtons setbetAmount={setbetAmount} />
           </div>
           <BetButton
+            setbetAmount={setbetAmount}
             youWin={youWin}
             betActive={betActive}
             setBetActive={setBetActive}

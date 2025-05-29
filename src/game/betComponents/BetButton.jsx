@@ -11,6 +11,7 @@ const BetButton = ({
   setBetActive,
   youWin,
   betAmount,
+  setbetAmount,
 }) => {
   const [state, setState] = useState("bet");
   const ButtonRef = useRef();
@@ -18,7 +19,7 @@ const BetButton = ({
     toast.success(`Congratulation You Win ${winRatio}.GEL`);
 
   const { gameState, flyAway } = useGameStore();
-  const { setUserMoneyAmount } = userStore();
+  const { setUserMoneyAmount, userMoneyAmount } = userStore();
   const { setBetActivated, setBetProps } = useBetStore();
 
   useEffect(() => {
@@ -48,6 +49,8 @@ const BetButton = ({
   const handleClick = () => {
     setBetActive((pre) => !pre);
 
+    checkUserMoney();
+
     if (state === "cancel") {
       setState("bet");
     }
@@ -58,6 +61,14 @@ const BetButton = ({
       youWinMessage();
       youWin();
       setUserMoneyAmount(+winRatio);
+    }
+  };
+
+  const checkUserMoney = () => {
+    if (userMoneyAmount / 2 <= betAmount) {
+      setbetAmount(userMoneyAmount / 2);
+      setBetActive(true);
+      return true;
     }
   };
 
@@ -76,7 +87,7 @@ const BetButton = ({
         {buttonText}
         <br />
         {gameState == "Started" && betActive ? winRatio : null}
-        {gameState == "loading" && betActive ? betAmount.toFixed(2) : null}
+        {gameState == "loading" && betActive ? betAmount : null}
       </button>
       <Toaster position="top-right" />
     </>
