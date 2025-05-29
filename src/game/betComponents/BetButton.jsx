@@ -26,7 +26,13 @@ const BetButton = ({
     gameState == "Started" && !betActive
       ? setState("waiting")
       : setState("bet");
-  }, [gameState]);
+
+    if (userMoneyAmount == 0) {
+      setBetActive(false);
+      setState("waiting");
+      toast.error("You don't have enough money to bet");
+    }
+  }, [gameState, userMoneyAmount]);
 
   useEffect(() => {
     if (betActive && gameState == "Started") {
@@ -43,6 +49,7 @@ const BetButton = ({
       setUserMoneyAmount(-betAmount);
       setBetActive(false);
     }
+
     setBetActivated(betActive);
   }, [betActive, gameState, flyAway, betAmount]);
 
