@@ -5,14 +5,13 @@
   background-color: #262626b3;
 }
 
-
 .smallBtns {
-  padding: 4px 8px ;
+  padding: 4px 8px;
   border-radius: 1rem;
   /* border: 0.5px solid white; */
   background-color: #333333;
   box-shadow: inherit;
-  box-shadow: 0 0.06em 0.09em 0 #b3b3b3;;
+  box-shadow: 0 0.06em 0.09em 0 #b3b3b3;
   color: white;
   font-size: small;
 }
@@ -27,7 +26,7 @@
 }
 
 .betButton {
-   background-color: #37a003;
+  background-color: #37a003;
   color: white;
   font-weight: 600;
   font-size: 20px;
@@ -41,7 +40,6 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 
 .betCounter {
   display: flex;
@@ -74,14 +72,13 @@
   border-radius: 20px;
   padding: 1px;
   transition: justify-content 1s ease-in-out;
-  justify-content: start; 
+  justify-content: start;
 }
 
 .buttonDiv.Active {
-  justify-content: end; 
+  justify-content: end;
   background-color: #47cc04;
 }
-
 
 .oval {
   background-color: white;
@@ -106,10 +103,10 @@
     text-align: center;
     border-radius: 20px;
     color: white;
-    background-color:#4d4d4d;
+    background-color: #4d4d4d;
     outline: none;
     border: none;
-    font-size: .755em;
+    font-size: 0.755em;
   }
 
   .smallAutoInput[type="number"]::-webkit-outer-spin-button,
@@ -119,7 +116,7 @@
   }
 }
 
-.smallebi:aria-disabled{
+.smallebi:aria-disabled {
   background-color: red;
 }
 .disabledDiv {

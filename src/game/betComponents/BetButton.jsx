@@ -12,6 +12,8 @@ const BetButton = ({
   youWin,
   betAmount,
   setbetAmount,
+  autoBetControler,
+  multiplier,
 }) => {
   const [state, setState] = useState("bet");
   const ButtonRef = useRef();
@@ -21,6 +23,23 @@ const BetButton = ({
   const { gameState, flyAway } = useGameStore();
   const { setUserMoneyAmount, userMoneyAmount } = userStore();
   const { setBetActivated, setBetProps } = useBetStore();
+
+  const { autoCashOut, autoCashOutBetAmount, autoBetActive } = autoBetControler;
+
+  useEffect(() => {
+    if (autoCashOut && betActive && gameState == "Started") {
+      let Bet = Number(multiplier.slice(0, 3));
+
+      if (autoCashOutBetAmount == Bet) {
+        console.log("Auto Cash Out Triggered");
+        youWinMessage();
+        youWin();
+        setUserMoneyAmount(+winRatio);
+        setState("waiting");
+        setBetActive(false);
+      }
+    }
+  }, [autoCashOut, betActive, gameState, multiplier, autoCashOutBetAmount]);
 
   useEffect(() => {
     gameState == "Started" && !betActive

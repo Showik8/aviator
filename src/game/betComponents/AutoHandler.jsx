@@ -1,33 +1,41 @@
-const AutoHandler = ({
-  autoBetActive,
-  setAutoBetActive,
-  autoCashOut,
-  betActive,
-  setAutoChashOut,
-  setAutoCashOutBetAmount,
-  autoCashOutBetAmount,
-}) => {
+const AutoHandler = ({ betActive, autoBetControler, setAutoBetControler }) => {
+  const { autoBetActive, autoCashOut, autoCashOutBetAmount } = autoBetControler;
   return (
     <div className="autoHandler">
       <div className="smallebi">
         <span>Auto Bet</span>
         <div
-          onClick={() => setAutoBetActive((pre) => !pre)}
+          onClick={() =>
+            setAutoBetControler((pre) => ({
+              ...pre,
+              autoBetActive: !pre.autoBetActive,
+            }))
+          }
           className={autoBetActive ? "buttonDiv Active" : "buttonDiv"}
         >
           <div className="oval"></div>
         </div>
       </div>
-      <div className={betActive ? "disabledDiv" : "smallebi"}>
+      <div className="smallebi">
         <span>Auto Cash out</span>
         <div
-          onClick={() => setAutoChashOut((pre) => !pre)}
+          onClick={() =>
+            setAutoBetControler((pre) => ({
+              ...pre,
+              autoCashOut: !pre.autoCashOut,
+            }))
+          }
           className={autoCashOut ? "buttonDiv Active" : "buttonDiv"}
         >
           <div className="oval"></div>
         </div>
         <input
-          onChange={(e) => setAutoCashOutBetAmount(e.target.value)}
+          onChange={(e) =>
+            setAutoBetControler((pre) => ({
+              ...pre,
+              autoCashOutBetAmount: e.target.value,
+            }))
+          }
           className="smallAutoInput"
           type="number"
           value={autoCashOutBetAmount}
