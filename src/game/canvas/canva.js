@@ -1,7 +1,7 @@
 const PADDING = 20;
 
 export let restarting = false;
-let randomValue = Math.pow(Math.random(), 3) * 15;
+let randomValue = Math.pow(Math.random(), 3) * (Math.random() * 15);
 
 class AviatorGame {
   constructor(ctx, width, height) {
@@ -31,7 +31,7 @@ class AviatorGame {
     this.finalTrailPoints = null;
     this.trailHeight = 2000;
     this.secretNum = randomValue;
-    this.currentMultiplier = 0;
+    this.currentMultiplier = 1;
     this.isFlying = true;
     this.hasStopped = false;
     this.flyingAway = false;

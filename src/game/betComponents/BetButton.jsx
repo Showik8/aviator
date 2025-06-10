@@ -4,6 +4,7 @@ import { useGameStore } from "../../../states/useGameStore";
 import toast, { Toaster } from "react-hot-toast";
 import { userStore } from "../../../states/userStore";
 import { useBetStore } from "../../../states/useBetStore";
+import { use } from "react";
 
 const BetButton = ({
   winRatio,
@@ -31,7 +32,6 @@ const BetButton = ({
       let Bet = Number(multiplier.slice(0, 3));
 
       if (autoCashOutBetAmount == Bet) {
-        console.log("Auto Cash Out Triggered");
         youWinMessage();
         youWin();
         setUserMoneyAmount(+winRatio);
@@ -40,6 +40,12 @@ const BetButton = ({
       }
     }
   }, [autoCashOut, betActive, gameState, multiplier, autoCashOutBetAmount]);
+
+  useEffect(() => {
+    if (autoBetActive && gameState == "loading") {
+      handleClick();
+    }
+  }, [autoBetActive, gameState]);
 
   useEffect(() => {
     gameState == "Started" && !betActive

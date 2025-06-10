@@ -1,5 +1,8 @@
 const AutoHandler = ({ betActive, autoBetControler, setAutoBetControler }) => {
   const { autoBetActive, autoCashOut, autoCashOutBetAmount } = autoBetControler;
+  let divActivation =
+    betActive && !autoCashOut ? "smallebi  disabledDiv" : "smallebi";
+
   return (
     <div className="autoHandler">
       <div className="smallebi">
@@ -16,7 +19,7 @@ const AutoHandler = ({ betActive, autoBetControler, setAutoBetControler }) => {
           <div className="oval"></div>
         </div>
       </div>
-      <div className="smallebi">
+      <div className={divActivation}>
         <span>Auto Cash out</span>
         <div
           onClick={() =>
