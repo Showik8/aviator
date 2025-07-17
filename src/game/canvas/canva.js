@@ -198,7 +198,7 @@ class AviatorGame {
 
     setTimeout(() => {
       this.initializeGame();
-    }, 5000);
+    }, 2000);
   }
 
   startAnimation() {
