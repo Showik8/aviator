@@ -6,7 +6,7 @@ import { userStore } from "../../../states/userStore";
 const PlayersList = () => {
   const { userPicture, userName } = userStore();
 
-  let totalBets = 0;
+  let totalBets = 1;
   return (
     <>
       <div className="playersList">

@@ -7,12 +7,12 @@ import {
 } from "../betComponents/index.js";
 
 import { useBetStore } from "../../../states/useBetStore";
-
 import "./betControler.css";
 
 const BetControler = ({ multiplier }) => {
   const [betAmount, setbetAmount] = useState(1.0);
   const [inputValue, setInputValue] = useState(1);
+
   const [betActive, setBetActive] = useState(false);
 
   const [autoBetControler, setAutoBetControler] = useState({
@@ -20,6 +20,8 @@ const BetControler = ({ multiplier }) => {
     autoCashOut: false,
     autoCashOutBetAmount: 5,
   });
+
+  const [gameState, setGameState] = useState("started");
 
   let winRatio = (parseFloat(multiplier) * betAmount).toFixed(2);
 
@@ -37,38 +39,17 @@ const BetControler = ({ multiplier }) => {
     setInputValue(betAmount);
   }, [betAmount]);
 
-  const decreaseBetAmount = (value) => {
-    switch (true) {
-      case value < 0.01:
-        break;
-      case value == 1:
-        setbetAmount(0.1);
-        break;
-      case value > 1:
-        setbetAmount((pre) => pre - 1);
-      default:
-        break;
-    }
-  };
-
-  const encreaseBetAmount = () => {
-    setbetAmount((pre) => pre + 1);
-  };
-
   return (
     <>
       <div className="box">
         <div className="betCounter">
           <div className="inputDivAndSmallButtons">
-            <BetInput
-              inputValue={inputValue}
-              decreaseBetAmount={decreaseBetAmount}
-              encreaseBetAmount={encreaseBetAmount}
-              setbetAmount={setbetAmount}
-            />
+            <BetInput inputValue={inputValue} setbetAmount={setbetAmount} />
             <BetSmallButtons setbetAmount={setbetAmount} />
           </div>
           <BetButton
+            gameState={gameState}
+            setGameState={setGameState}
             multiplier={multiplier}
             setbetAmount={setbetAmount}
             youWin={youWin}

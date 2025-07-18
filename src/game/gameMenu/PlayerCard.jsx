@@ -1,8 +1,7 @@
 import { useBetStore } from "../../../states/useBetStore";
 
 const PlayerCard = ({ userName, userPicture }) => {
-  const { betProps, betActivated } = useBetStore();
-
+  const { betProps } = useBetStore();
   const { multiplier, winRatio, betAmount } = betProps || {};
 
   return (

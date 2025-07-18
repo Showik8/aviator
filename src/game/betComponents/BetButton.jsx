@@ -4,7 +4,6 @@ import { useGameStore } from "../../../states/useGameStore";
 import toast, { Toaster } from "react-hot-toast";
 import { userStore } from "../../../states/userStore";
 import { useBetStore } from "../../../states/useBetStore";
-import { use } from "react";
 
 const BetButton = ({
   winRatio,
@@ -23,15 +22,15 @@ const BetButton = ({
 
   const { gameState, flyAway } = useGameStore();
   const { setUserMoneyAmount, userMoneyAmount } = userStore();
-  const { setBetActivated, setBetProps } = useBetStore();
+  const { setBetProps } = useBetStore();
 
   const { autoCashOut, autoCashOutBetAmount, autoBetActive } = autoBetControler;
 
   useEffect(() => {
     if (autoCashOut && betActive && gameState == "Started") {
-      let Bet = Number(multiplier.slice(0, 3));
+      let SLICEDMULTIPLIER = Number(multiplier.slice(0, 3));
 
-      if (autoCashOutBetAmount == Bet) {
+      if (autoCashOutBetAmount == SLICEDMULTIPLIER) {
         youWinMessage();
         youWin();
         setUserMoneyAmount(+winRatio);
@@ -74,8 +73,6 @@ const BetButton = ({
       setUserMoneyAmount(-betAmount);
       setBetActive(false);
     }
-
-    setBetActivated(betActive);
   }, [betActive, gameState, flyAway, betAmount]);
 
   const handleClick = () => {
