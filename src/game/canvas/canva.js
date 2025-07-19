@@ -6,7 +6,8 @@ const LOADING_DOT_SPACING = 15;
 const RESET_TIMEOUT = 3000; // 3 seconds
 
 export let restarting = false;
-let randomValue = Math.pow(Math.random(), 3) * 15;
+let randomValue =
+  ((Math.random() * Math.random()) / Math.random()) * Math.random() * 15;
 
 class AviatorGame {
   constructor(ctx, width, height) {

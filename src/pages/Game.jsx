@@ -24,8 +24,8 @@ const Game = () => {
         <div className="canva">
           <Aviator multiplier={multiplier} setMultiplier={setMultiplier} />
           <div className="betButtons">
-            <BetControler multiplier={multiplier} />
-            <BetControler multiplier={multiplier} />
+            <BetControler key={1} multiplier={multiplier} />
+            <BetControler key={2} multiplier={multiplier} />
           </div>
         </div>
       </div>

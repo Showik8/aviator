@@ -15,7 +15,7 @@ const BetButton = ({
   autoBetControler,
   multiplier,
 }) => {
-  const [state, setState] = useState("bet");
+  const [betButtonState, setBetButtonState] = useState("bet");
   const ButtonRef = useRef();
   const youWinMessage = () =>
     toast.success(`Congratulation You Win ${winRatio}.GEL`);
@@ -34,44 +34,42 @@ const BetButton = ({
         youWinMessage();
         youWin();
         setUserMoneyAmount(+winRatio);
-        setState("waiting");
+        setBetButtonState("waiting");
         setBetActive(false);
       }
     }
   }, [autoCashOut, betActive, gameState, multiplier, autoCashOutBetAmount]);
 
   useEffect(() => {
-    if (autoBetActive && gameState == "loading") {
-      handleClick();
+    if (autoBetActive && gameState == "loading" && checkUserMoney) {
+      setBetActive(true);
     }
   }, [autoBetActive, gameState]);
 
   useEffect(() => {
     gameState == "Started" && !betActive
-      ? setState("waiting")
-      : setState("bet");
+      ? setBetButtonState("waiting")
+      : setBetButtonState("bet");
 
     if (userMoneyAmount == 0) {
       setBetActive(false);
-      setState("waiting");
+      setBetButtonState("waiting");
       toast.error("You don't have enough money to bet");
     }
-  }, [gameState, userMoneyAmount]);
+  }, [gameState]);
 
   useEffect(() => {
     if (betActive && gameState == "Started") {
-      setState("cashout");
+      setBetButtonState("cashout");
     }
 
     if (betActive && gameState !== "Started") {
       setBetProps({ betAmount });
-      setState("cancel");
+      setBetButtonState("cancel");
     }
 
     if (flyAway && betActive && gameState == "Started") {
-      setState("waiting");
-      setUserMoneyAmount(-betAmount);
-      setBetActive(false);
+      youLose();
     }
   }, [betActive, gameState, flyAway, betAmount]);
 
@@ -80,13 +78,13 @@ const BetButton = ({
 
     checkUserMoney();
 
-    if (state === "cancel") {
-      setState("bet");
+    if (betButtonState === "cancel") {
+      setBetButtonState("bet");
     }
 
-    if (state === "cashout") {
+    if (betButtonState === "cashout") {
       setBetActive(false);
-      setState("waiting");
+      setBetButtonState("waiting");
       youWinMessage();
       youWin();
       setUserMoneyAmount(+winRatio);
@@ -101,15 +99,21 @@ const BetButton = ({
     }
   };
 
-  let buttonColor = buttonRecord[state].color;
-  let buttonText = buttonRecord[state].text;
+  const youLose = () => {
+    setBetButtonState("waiting");
+    setUserMoneyAmount(-betAmount);
+    setBetActive(false);
+  };
+
+  let buttonColor = buttonRecord[betButtonState].color;
+  let buttonText = buttonRecord[betButtonState].text;
 
   return (
     <>
       <button
         ref={ButtonRef}
         onClick={handleClick}
-        disabled={state === "waiting"}
+        disabled={betButtonState === "waiting"}
         className={"betButton"}
         style={{ backgroundColor: buttonColor }}
       >

@@ -16,8 +16,8 @@ const BetControler = ({ multiplier }) => {
   const [betActive, setBetActive] = useState(false);
 
   const [autoBetControler, setAutoBetControler] = useState({
-    autoBetActive: false,
-    autoCashOut: false,
+    autoBetActive: true,
+    autoCashOut: true,
     autoCashOutBetAmount: 5,
   });
 
