@@ -1,4 +1,5 @@
-const PADDING = 20;
+const PADDING = 0;
+const BOUNDARY_PADDING = 80; // NEW: Boundary padding constant
 const LOADING_ROTATION_SPEED = 0.05;
 const LOADING_DOT_COUNT = 8;
 const LOADING_DOT_RADIUS = 5;
@@ -6,8 +7,7 @@ const LOADING_DOT_SPACING = 15;
 const RESET_TIMEOUT = 3000; // 3 seconds
 
 export let restarting = false;
-let randomValue =
-  ((Math.random() * Math.random()) / Math.random()) * Math.random() * 15;
+let randomValue = Math.pow(Math.random(), 3) * (20 - 1.03) + 1.03;
 
 class AviatorGame {
   constructor(ctx, width, height) {
@@ -74,6 +74,7 @@ class AviatorGame {
       isResetting: false,
       imageLoaded: false,
       finalTrailPoints: null,
+      hitBoundary: false, // NEW: Track if plane hit boundary
     };
 
     // Load plane image
@@ -293,29 +294,47 @@ class AviatorGame {
 
   // Game logic methods
   updateFlight() {
-    this.state.x += this.state.speed;
-    this.state.y -= this.state.ascendSpeed;
+    // Only move if not at boundary
+    if (!this.state.hitBoundary) {
+      this.state.x += this.state.speed;
+      this.state.y -= this.state.ascendSpeed;
 
-    // Increase multiplier
-    const multiplierIncrease = Math.random() * 0.03 + 0.01;
+      // NEW: Boundary checks
+      const rightBoundary =
+        this.width - BOUNDARY_PADDING - this.state.planeWidth;
+      const topBoundary = BOUNDARY_PADDING;
+
+      if (this.state.x >= rightBoundary) {
+        this.state.x = rightBoundary;
+        this.state.hitBoundary = true;
+      }
+
+      if (this.state.y <= topBoundary) {
+        this.state.y = topBoundary;
+        this.state.hitBoundary = true;
+      }
+
+      // Add new trail point
+      this.state.allTrailPoints.push({
+        x: this.state.x,
+        y: this.state.y,
+      });
+
+      // Remove old points
+      while (
+        this.state.allTrailPoints[0].x <
+        this.state.x - this.state.maxTrailLength
+      ) {
+        this.state.allTrailPoints.shift();
+      }
+    }
+
+    // ALWAYS increase multiplier (even when stopped at boundary)
+    const multiplierIncrease = 0.0015;
     this.state.currentMultiplier += multiplierIncrease;
 
     if (this.callbacks.multiplierChange) {
       this.callbacks.multiplierChange(this.state.currentMultiplier);
-    }
-
-    // Add new trail point
-    this.state.allTrailPoints.push({
-      x: this.state.x,
-      y: this.state.y,
-    });
-
-    // Remove old points
-    while (
-      this.state.allTrailPoints[0].x <
-      this.state.x - this.state.maxTrailLength
-    ) {
-      this.state.allTrailPoints.shift();
     }
 
     // Check if plane should fly away
@@ -325,16 +344,20 @@ class AviatorGame {
       this.state.finalTrailPoints = [...this.state.allTrailPoints];
       this.state.speed *= 1.2;
       this.state.ascendSpeed *= 1.2;
+      this.state.hitBoundary = false; // NEW: Release from boundary
     }
   }
 
   updateFlyingAway() {
-    const speedMultiplier = 1.05;
+    const speedMultiplier = 1.04;
     this.state.speed *= speedMultiplier;
     this.state.ascendSpeed *= speedMultiplier;
 
-    this.state.x += this.state.speed;
-    this.state.y -= this.state.ascendSpeed;
+    // NEW: Prevent flying backwards into screen
+    if (this.state.y > -this.state.planeHeight) {
+      this.state.x += this.state.speed;
+      this.state.y -= this.state.ascendSpeed;
+    }
 
     // Check if plane has flown off screen
     if (this.state.y < -this.state.planeHeight && !this.state.hasStopped) {
@@ -387,7 +410,7 @@ class AviatorGame {
     this.loadingState.resetProgress = 0;
 
     // Generate new random crash point
-    randomValue = Math.pow(Math.random(), 3) * 15;
+    randomValue = Math.pow(Math.random(), 3) * (20 - 1.03) + 1.03;
 
     // Reset after timeout
     setTimeout(() => {

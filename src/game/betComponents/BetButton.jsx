@@ -68,7 +68,7 @@ const BetButton = ({
       setBetButtonState("cancel");
     }
 
-    if (flyAway && betActive && gameState == "Started") {
+    if (betActive && flyAway && betButtonState === "cashout") {
       youLose();
     }
   }, [betActive, gameState, flyAway, betAmount]);

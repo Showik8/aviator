@@ -8,6 +8,7 @@ import {
 
 import { useBetStore } from "../../../states/useBetStore";
 import "./betControler.css";
+import { useGameStore } from "../../../states/useGameStore.js";
 
 const BetControler = ({ multiplier }) => {
   const [betAmount, setbetAmount] = useState(1.0);
@@ -26,6 +27,7 @@ const BetControler = ({ multiplier }) => {
   let winRatio = (parseFloat(multiplier) * betAmount).toFixed(2);
 
   const { setBetProps } = useBetStore();
+  const { flyAway } = useGameStore();
 
   function youWin() {
     setBetProps({
@@ -35,15 +37,13 @@ const BetControler = ({ multiplier }) => {
     });
   }
 
-  useEffect(() => {
-    setInputValue(betAmount);
-  }, [betAmount]);
-
   return (
     <>
       <div className="box">
         <div className="betCounter">
-          <div className="inputDivAndSmallButtons">
+          <div
+            className={`inputDivAndSmallButtons ${!flyAway && "disabledDiv"}`}
+          >
             <BetInput inputValue={inputValue} setbetAmount={setbetAmount} />
             <BetSmallButtons setbetAmount={setbetAmount} />
           </div>
