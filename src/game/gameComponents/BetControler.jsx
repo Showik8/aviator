@@ -37,12 +37,18 @@ const BetControler = ({ multiplier }) => {
     });
   }
 
+  useEffect(() => {
+    setInputValue(betAmount);
+  }, [betAmount]);
+
   return (
     <>
       <div className="box">
         <div className="betCounter">
           <div
-            className={`inputDivAndSmallButtons ${!flyAway && "disabledDiv"}`}
+            className={`inputDivAndSmallButtons ${
+              betActive && !flyAway && "disabledDiv"
+            }`}
           >
             <BetInput inputValue={inputValue} setbetAmount={setbetAmount} />
             <BetSmallButtons setbetAmount={setbetAmount} />
