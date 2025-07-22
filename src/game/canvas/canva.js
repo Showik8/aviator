@@ -1,13 +1,13 @@
 const PADDING = 0;
-const BOUNDARY_PADDING = 80; // NEW: Boundary padding constant
+const BOUNDARY_PADDING = 120; // NEW: Boundary padding constant
 const LOADING_ROTATION_SPEED = 0.05;
 const LOADING_DOT_COUNT = 8;
 const LOADING_DOT_RADIUS = 5;
 const LOADING_DOT_SPACING = 15;
 const RESET_TIMEOUT = 3000; // 3 seconds
 
-export let restarting = false;
-let randomValue = Math.pow(Math.random(), 3) * (20 - 1.03) + 1.03;
+let randomValue =
+  ((Math.pow(Math.random(), 3) * Math.random()) / Math.random()) * 10 + 1.5;
 
 class AviatorGame {
   constructor(ctx, width, height) {
@@ -15,7 +15,6 @@ class AviatorGame {
     this.width = width;
     this.height = height;
     this.callbacks = {
-      gameEnd: null,
       multiplierChange: null,
       loadingChange: null,
       flyingAway: null,
@@ -52,15 +51,16 @@ class AviatorGame {
 
   initializeGame() {
     this.setLoading(true);
-    restarting = false;
 
     // Game state
     this.state = {
-      planeWidth: 100,
-      planeHeight: 100,
+      // planeWidth: (this.width * 7) / 100,
+      planeWidth: 150,
+
+      planeHeight: 10,
       x: PADDING + 100,
       y: this.height - 100,
-      speed: 3,
+      speed: 10,
       ascendSpeed: Math.tan((20 * Math.PI) / 180) * 3,
       allTrailPoints: [{ x: PADDING + 100, y: this.height - 100 }],
       maxTrailLength: this.width,
@@ -74,9 +74,10 @@ class AviatorGame {
       isResetting: false,
       imageLoaded: false,
       finalTrailPoints: null,
+      gameEnd: false,
       hitBoundary: false, // NEW: Track if plane hit boundary
     };
-
+    this.initialY = this.height - 100;
     // Load plane image
     this.planeImage = new Image();
     this.planeImage.onload = () => {
@@ -95,9 +96,7 @@ class AviatorGame {
   }
 
   // Callback registration methods
-  onGameEnded(callback) {
-    this.callbacks.gameEnd = callback;
-  }
+
   onLoadingStateChange(callback) {
     this.callbacks.loadingChange = callback;
   }
@@ -116,7 +115,6 @@ class AviatorGame {
     return this.state.finalMultiplier;
   }
 
-  // Drawing methods
   drawTrail() {
     const points = this.state.flyingAway
       ? this.state.finalTrailPoints
@@ -124,23 +122,21 @@ class AviatorGame {
     if (!points || points.length < 2) return;
 
     this.ctx.beginPath();
-    const lastPoint = points[points.length - 1];
-    this.ctx.moveTo(lastPoint.x, lastPoint.y);
-    this.ctx.lineTo(lastPoint.x, lastPoint.y + this.state.trailHeight);
+    this.ctx.moveTo(points[0].x, points[0].y);
 
+    // დავხატოთ ხაზი ყველა წერტილზე
+    for (let i = 1; i < points.length; i++) {
+      this.ctx.lineTo(points[i].x, points[i].y);
+    }
     for (let i = points.length - 1; i >= 0; i--) {
       this.ctx.lineTo(points[i].x, points[i].y + this.state.trailHeight);
     }
 
-    const firstPoint = points[0];
-    this.ctx.lineTo(firstPoint.x, firstPoint.y + 100);
+    this.ctx.strokeStyle = "#9b0707"; // წითელი ფერი
+    this.ctx.lineWidth = 5; // ხაზის სისქე
+    this.ctx.stroke();
 
-    for (let i = 1; i < points.length; i++) {
-      this.ctx.lineTo(points[i].x, points[i].y + 100);
-    }
-
-    this.ctx.closePath();
-    this.ctx.fillStyle = "#9b0707";
+    this.ctx.fillStyle = "rgba(181, 35, 35, 0.5)";
     this.ctx.fill();
   }
 
@@ -244,9 +240,9 @@ class AviatorGame {
       this.ctx.save();
       this.ctx.translate(
         this.state.x + this.state.planeWidth / 2,
-        this.state.y + this.state.planeHeight / 2
+        this.state.y + this.state.planeHeight / 2 - 110
       );
-      this.ctx.rotate((-1 * Math.PI) / 100);
+      this.ctx.rotate((1 * Math.PI) / 50);
       this.ctx.drawImage(
         this.planeImage,
         -this.state.planeWidth / 2,
@@ -262,7 +258,7 @@ class AviatorGame {
         this.state.x + this.state.planeWidth / 2,
         this.state.y + this.state.planeHeight / 2
       );
-      this.ctx.rotate((-1 * Math.PI) / 180);
+      this.ctx.rotate((1 * Math.PI) / 50);
       this.ctx.fillStyle = "#e74c3c";
       this.ctx.beginPath();
       this.ctx.moveTo(-this.state.planeWidth / 2, -this.state.planeHeight / 4);
@@ -292,35 +288,42 @@ class AviatorGame {
     }
   }
 
-  // Game logic methods
   updateFlight() {
-    // Only move if not at boundary
     if (!this.state.hitBoundary) {
-      this.state.x += this.state.speed;
-      this.state.y -= this.state.ascendSpeed;
+      this.state.x += 10; // თანაბრად მარჯვნივ
 
-      // NEW: Boundary checks
+      const t = (this.state.x - this.width * 0.1) / (this.width / 10);
+      let upStop = this.state.y > this.height * 0.2;
+
+      if (upStop) {
+        this.state.y = this.height - 100 - Math.exp(t + 0.1 - 1);
+      }
+
+      if (this.width < 1500 && this.width > 701 && upStop) {
+        this.planeWidth = 100;
+        this.state.y = this.height - 100 - Math.exp(t + 0.003);
+      }
+
+      if (this.width < 900 && upStop) {
+        this.planeWidth = 100;
+        this.state.y = this.height - 100 - Math.exp(t + 1.7);
+      }
+
+      // Boundary checks
       const rightBoundary =
         this.width - BOUNDARY_PADDING - this.state.planeWidth;
-      const topBoundary = BOUNDARY_PADDING;
 
       if (this.state.x >= rightBoundary) {
         this.state.x = rightBoundary;
         this.state.hitBoundary = true;
       }
 
-      if (this.state.y <= topBoundary) {
-        this.state.y = topBoundary;
-        this.state.hitBoundary = true;
-      }
-
-      // Add new trail point
+      // Add trail point
       this.state.allTrailPoints.push({
         x: this.state.x,
         y: this.state.y,
       });
 
-      // Remove old points
       while (
         this.state.allTrailPoints[0].x <
         this.state.x - this.state.maxTrailLength
@@ -329,22 +332,24 @@ class AviatorGame {
       }
     }
 
-    // ALWAYS increase multiplier (even when stopped at boundary)
+    // Multiplier logic
     const multiplierIncrease = 0.0015;
     this.state.currentMultiplier += multiplierIncrease;
 
     if (this.callbacks.multiplierChange) {
       this.callbacks.multiplierChange(this.state.currentMultiplier);
     }
-
-    // Check if plane should fly away
+    if (this.state.secretNum - this.state.currentMultiplier < 0.02) {
+      this.state.gameEnd = true;
+    }
+    // Fly away condition
     if (this.state.currentMultiplier > this.state.secretNum) {
       this.state.flyingAway = true;
       this.state.finalMultiplier = this.state.currentMultiplier;
       this.state.finalTrailPoints = [...this.state.allTrailPoints];
-      this.state.speed *= 1.2;
-      this.state.ascendSpeed *= 1.2;
-      this.state.hitBoundary = false; // NEW: Release from boundary
+      this.state.speed *= 1.8;
+      this.state.ascendSpeed *= 1.8;
+      this.state.hitBoundary = false;
     }
   }
 
@@ -410,7 +415,8 @@ class AviatorGame {
     this.loadingState.resetProgress = 0;
 
     // Generate new random crash point
-    randomValue = Math.pow(Math.random(), 3) * (20 - 1.03) + 1.03;
+    randomValue =
+      ((Math.pow(Math.random(), 3) * Math.random()) / Math.random()) * 10 + 1.5;
 
     // Reset after timeout
     setTimeout(() => {
@@ -460,15 +466,6 @@ export const initializeGame = (canvas) => {
   const game = new AviatorGame(ctx, canvas.width, canvas.height);
   window.aviatorGame = game;
   game.startAnimation();
-
-  // Handle window resize
-  const handleResize = () => {
-    updateCanvasSize();
-    game.width = canvas.width;
-    game.height = canvas.height;
-    game.reset();
-  };
-  window.addEventListener("resize", handleResize);
 
   return game;
 };

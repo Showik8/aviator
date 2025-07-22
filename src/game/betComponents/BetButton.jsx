@@ -4,6 +4,8 @@ import { useGameStore } from "../../../states/useGameStore";
 import toast, { Toaster } from "react-hot-toast";
 import { userStore } from "../../../states/userStore";
 import { useBetStore } from "../../../states/useBetStore";
+import playSound from "../../utils/sound";
+import betSound from "../sounds/bet.mp3";
 
 const BetButton = ({
   winRatio,
@@ -41,7 +43,7 @@ const BetButton = ({
   }, [autoCashOut, betActive, gameState, multiplier, autoCashOutBetAmount]);
 
   useEffect(() => {
-    if (autoBetActive && gameState == "loading" && checkUserMoney) {
+    if (autoBetActive && gameState == "loading" && checkUserMoney()) {
       setBetActive(true);
     }
   }, [autoBetActive, gameState]);
@@ -74,6 +76,7 @@ const BetButton = ({
   }, [betActive, gameState, flyAway, betAmount]);
 
   const handleClick = () => {
+    playSound(betSound);
     setBetActive((pre) => !pre);
 
     checkUserMoney();
@@ -95,8 +98,8 @@ const BetButton = ({
     if (userMoneyAmount / 2 <= betAmount) {
       setbetAmount(userMoneyAmount / 2);
       setBetActive(true);
-      return true;
     }
+    return true;
   };
 
   const youLose = () => {
@@ -122,7 +125,8 @@ const BetButton = ({
         {gameState == "Started" && betActive ? winRatio : null}
         {gameState == "loading" && betActive ? betAmount : null}
       </button>
-      <Toaster position="top-right" />
+
+      <Toaster position={innerWidth > 1000 ? "top-right" : "top-center"} />
     </>
   );
 };

@@ -82,7 +82,6 @@
     top: 0px;
     left: 0;
     background-color: black;
-    z-index: 999;
   }
   .gameMenu {
     width: 100%;
@@ -90,7 +89,8 @@
   }
 
   .app__wrapper {
-    height: 90svh;
+    height: unset;
+    height: 60%;
   }
   .loadingAnimation {
     height: 90svh;

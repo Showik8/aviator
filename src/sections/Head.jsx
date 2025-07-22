@@ -12,27 +12,6 @@ const Head = ({ width }) => {
     displ = "small";
   }
 
-  // if (displ === "big") {
-  //   return (
-  //     <header>
-  //       <img src={logo} alt="Company Logo" />
-  //       <Navigation />
-  //       <Button blank={true} href={"/game"} role={"outlined"} text={"Demo"} />
-  //     </header>
-  //   );
-  // }
-  // if (displ === "small") {
-  //   return (
-  // <header className="subHeader">
-  //   <div>
-  //     <img src={logo} alt="Company Logo" />
-  //     <Button role={"outlined"} href={"/game"} text={"Demo"} />
-  //   </div>
-  //   <Navigation />
-  // </header>
-  //   );
-  // }
-
   return <>{width > 800 ? <BigHeader /> : <SmallHeader />}</>;
 };
 

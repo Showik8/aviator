@@ -3,6 +3,8 @@ import SubHeader from "../game/gameMenu/SubHeader";
 import TabSwitcher from "../game/gameMenu/TabSwitcher";
 import PlayersList from "../game/gameMenu/PlayersList";
 import Aviator from "../game/canvas/Aviator";
+import started from "../game/sounds/started.mp3";
+import playSound from "../utils/sound.js";
 
 import { useRef, useState } from "react";
 
@@ -12,6 +14,7 @@ const Game = () => {
   const fullscreenElement = useRef(null);
   const [multiplier, setMultiplier] = useState("1.0x");
   const [activeTab, setActiveTab] = useState("all");
+  // playSound(started);
 
   return (
     <>

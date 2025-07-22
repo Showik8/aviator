@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import "./canvas.css";
 import { initializeGame } from "./canva.js";
 import { useGameStore } from "../../../states/useGameStore";
+import playSound from "../../utils/sound.js";
+import crash from "../sounds/crash.mp3";
 
 const Aviator = ({ multiplier, setMultiplier }) => {
   const canvasRef = useRef(null);
@@ -9,7 +11,6 @@ const Aviator = ({ multiplier, setMultiplier }) => {
   const gameRef = useRef(null);
 
   const { gameState, setGameState, setFlyAway, flyAway } = useGameStore();
-
   useEffect(() => {
     if (canvasRef.current && multiplierRef.current) {
       setGameState("Started");
@@ -39,12 +40,13 @@ const Aviator = ({ multiplier, setMultiplier }) => {
   useEffect(() => {
     const game = window.aviatorGame || null;
 
-    if (game) {
-      if (game.state.flyingAway) {
-        setFlyAway(true);
-      }
+    if (game.state.gameEnd) {
+      setGameState("loading");
+      setFlyAway(true);
+
+      playSound(crash, 7);
     }
-  }, [window.aviatorGame?.state?.flyingAway]);
+  }, [window.aviatorGame?.state?.gameEnd]);
 
   return (
     <>

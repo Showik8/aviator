@@ -6,6 +6,7 @@ function App() {
   const width = WindowWidth();
   const routesConfig = getRoutesConfig(width);
 
+  console.log("HI GUYS");
   return (
     <Routes>
       {routesConfig.map((route, index) => (

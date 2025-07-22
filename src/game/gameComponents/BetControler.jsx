@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import playSound from "../../utils/sound.js";
+import win from "../sounds/win.mp3";
 import {
   AutoHandler,
   BetButton,
@@ -30,6 +32,7 @@ const BetControler = ({ multiplier }) => {
   const { flyAway } = useGameStore();
 
   function youWin() {
+    playSound(win);
     setBetProps({
       betAmount: betAmount,
       multiplier: multiplier,
