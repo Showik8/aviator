@@ -2,7 +2,6 @@ const BOUNDARY_PADDING = 80; // NEW: Boundary padding constant
 const LOADING_ROTATION_SPEED = 0.05;
 const LOADING_DOT_COUNT = 8;
 const LOADING_DOT_RADIUS = 5;
-const LOADING_DOT_SPACING = 15;
 const RESET_TIMEOUT = 3000; // 3 seconds
 
 let randomValue =
@@ -415,7 +414,7 @@ class AviatorGame {
 
     // Generate new random crash point
     randomValue =
-      ((Math.pow(Math.random(), 3) * Math.random()) / Math.random()) * 10 + 1.5;
+      ((Math.pow(Math.random(), 3) * Math.random()) / Math.random()) * 7 + 1.5;
 
     // Reset after timeout
     setTimeout(() => {

@@ -1,4 +1,4 @@
-// import logo from "../gameAssets/logo.png";
+import logo from "../gameAssets/logo.svg";
 import FullscreenComponent from "./FullScreen";
 
 import "../../styles/gameMenu.css";
@@ -11,7 +11,7 @@ const SubHeader = ({ fullscreenElement }) => {
   return (
     <>
       <div className="SubHeader">
-        {/* <img src={logo} alt="Aviator Logo" /> */}
+        <img src={logo} alt="Aviator Logo" />
         <div className="controler">
           <span>
             <strong>{userMoneyAmount.toFixed(2)}</strong> GEL
