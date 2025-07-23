@@ -22,12 +22,6 @@
       "fileHash": "8057f757",
       "needsInterop": false
     },
-    "recoil": {
-      "src": "../../node_modules/recoil/es/index.js",
-      "file": "recoil.js",
-      "fileHash": "865f86e0",
-      "needsInterop": false
-    },
     "styled-components": {
       "src": "../../node_modules/styled-components/dist/styled-components.browser.esm.js",
       "file": "styled-components.js",

@@ -1,5 +1,4 @@
-const PADDING = 0;
-const BOUNDARY_PADDING = 120; // NEW: Boundary padding constant
+const BOUNDARY_PADDING = 80; // NEW: Boundary padding constant
 const LOADING_ROTATION_SPEED = 0.05;
 const LOADING_DOT_COUNT = 8;
 const LOADING_DOT_RADIUS = 5;
@@ -55,14 +54,14 @@ class AviatorGame {
     // Game state
     this.state = {
       // planeWidth: (this.width * 7) / 100,
-      planeWidth: 150,
+      planeWidth: 200,
 
-      planeHeight: 10,
-      x: PADDING + 100,
+      planeHeight: 200,
+      x: 100,
       y: this.height - 100,
       speed: 10,
       ascendSpeed: Math.tan((20 * Math.PI) / 180) * 3,
-      allTrailPoints: [{ x: PADDING + 100, y: this.height - 100 }],
+      allTrailPoints: [{ x: 100, y: this.height - 100 }],
       maxTrailLength: this.width,
       trailHeight: 2000,
       secretNum: randomValue,
@@ -452,13 +451,12 @@ export const initializeGame = (canvas) => {
   const ctx = canvas.getContext("2d");
 
   // Canvas styling
-  canvas.style.padding = `${PADDING}px`;
   canvas.style.boxSizing = "border-box";
 
   // Canvas sizing
   const updateCanvasSize = () => {
-    canvas.width = (window.innerWidth - PADDING * 2) * 1.5;
-    canvas.height = (window.innerHeight - PADDING * 2) * 1.5;
+    canvas.width = window.innerWidth * 1.8;
+    canvas.height = window.innerHeight * 1.5;
   };
   updateCanvasSize();
 

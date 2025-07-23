@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import "../styles/button.sass";
+// import "../styles/button.sass";
+
+import "../../css/button.css";
 
 const Button = ({ role, text, href, blank }) => {
   return (

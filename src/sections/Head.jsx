@@ -1,8 +1,7 @@
 import BigHeader from "../components/headersType/BigHeader";
 import SmallHeader from "../components/headersType/SmallHeader";
 
-import "../styles/component.sass";
-
+import "../../css/component.css";
 const Head = ({ width }) => {
   let displ = "big" || "small";
 

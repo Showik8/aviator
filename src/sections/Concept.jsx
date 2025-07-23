@@ -1,7 +1,6 @@
 // import secondPlane from "../assets/secondPlane.png"
 import second from "../assets/second.png";
-import "../styles/component.sass";
-
+import "../../css/component.css";
 
 const Concept = ({ width }) => {
   return (

@@ -1,7 +1,7 @@
 import plane from "../assets/plane.png";
 import Button from "../components/Button";
 
-import "../styles/component.sass";
+import "../../css/component.css";
 
 const Home = ({ width }) => {
   return (

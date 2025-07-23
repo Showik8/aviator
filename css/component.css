@@ -1,0 +1,354 @@
+section {
+  height: 800px;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(9, 34, 52, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  top: 0;
+  z-index: 100;
+}
+header ul {
+  display: inline-flex;
+  gap: 1rem;
+  list-style: none;
+}
+header .list {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.5s ease-in-out;
+  font-family: Helvetica, system-ui, Arial, sans-serif;
+}
+header .activatedList {
+  color: hsl(3, 58%, 47%);
+  transform: scale(1.2);
+}
+header .list:hover {
+  color: hsl(3, 58%, 47%);
+}
+
+.subHeader {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+.subHeader div {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2%;
+}
+.subHeader nav {
+  display: inline-flex;
+  background-color: rgba(35, 48, 62, 0.8);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+.subHeader .list {
+  font-size: 14px;
+}
+
+#home {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 0%;
+  gap: 100px;
+  background-color: rgba(9, 34, 52, 0.8);
+}
+#home .divInHome {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 500px;
+  height: 550px;
+}
+#home .divInHome pre {
+  color: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  font-size: 50px;
+  text-wrap: wrap;
+  font-weight: 600;
+}
+#home .divInHome span {
+  font-weight: 600;
+  font-size: 3rem;
+  color: hsl(3, 58%, 47%);
+}
+#home .divInHome p {
+  padding-right: 1%;
+  overflow-wrap: normal;
+  word-break: normal;
+  color: white;
+  font-size: 16px;
+}
+#home .divInHomeResp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 500px;
+  height: 550px;
+}
+#home .divInHomeResp pre {
+  color: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 50px;
+  text-wrap: wrap;
+  font-weight: 600;
+}
+#home .divInHomeResp span {
+  font-weight: 600;
+  font-size: 3rem;
+  color: hsl(3, 58%, 47%);
+}
+#home .divInHomeResp p {
+  text-align: center;
+  padding-right: 1%;
+  overflow-wrap: normal;
+  word-break: normal;
+  color: white;
+  font-size: 16px;
+}
+#home img {
+  width: 500px;
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  bottom: 30px;
+  margin-bottom: 100px;
+}
+#home img:hover {
+  transform: scale(1.05);
+}
+
+#about {
+  background-color: #1e293b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  margin-bottom: 100px;
+}
+#about pre {
+  margin-top: 50px;
+  color: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 50px;
+  text-wrap: wrap;
+  font-weight: 600;
+}
+#about pre span {
+  font-weight: 600;
+  font-size: 3rem;
+  color: hsl(3, 58%, 47%);
+}
+#about .phonesDiv {
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(to bottom, transparent 20%, rgba(255, 255, 255, 0.0666666667) 20%, rgba(255, 255, 255, 0.0666666667) 80%, transparent 80%);
+  width: 100%;
+  padding: 10px 10%;
+  height: 500px;
+  margin-top: 100px;
+}
+#about .phonesDiv p {
+  text-align: start;
+  color: white;
+}
+#about .phonesDiv img {
+  height: 90%;
+}
+
+#conception {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+#conception .conc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 450px;
+}
+#conception pre {
+  color: #242424;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  font-size: 36px;
+  text-wrap: wrap;
+  font-weight: 600;
+}
+#conception span {
+  text-align: start;
+  color: #bd3932;
+}
+#conception p {
+  font-weight: 300;
+  font-size: 16px;
+}
+#conception .secondPlane {
+  width: 400px;
+}
+
+#whyus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5% 10%;
+  height: 1200px;
+  background-color: #1e293b;
+}
+#whyus pre {
+  color: #fbfbfb;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 36px;
+  text-wrap: wrap;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+#whyus pre span {
+  color: #bd3932;
+}
+#whyus .reasonCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  margin-bottom: 40px;
+}
+#whyus .reasonCard {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.0941176471), #2b313d);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4% 2%;
+  height: 200px;
+  border-radius: 20px;
+  margin: 20px;
+  text-align: center;
+}
+#whyus .reasonSpan {
+  font-size: 22px;
+  color: white;
+}
+#whyus .conteinerOfWhyus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 70%;
+  height: 450px;
+  border-radius: 15px;
+  border: 0.1px solid;
+  border-color: rgba(232, 232, 232, 0.4);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.0941176471), #2b313d);
+  color: rgb(232, 232, 232);
+  padding: 2% 10%;
+  text-align: center;
+}
+#whyus .conteinerOfWhyus h4 {
+  font-size: 35px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 1440px) {
+  .phonesDiv {
+    flex-direction: column;
+  }
+  .phonesDiv img {
+    width: 400px;
+  }
+}
+@media (max-width: 800px) {
+  #home {
+    margin-top: 100px;
+  }
+  .cards {
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+  }
+  #conception {
+    height: auto;
+  }
+  #conception .conc {
+    width: 100%;
+    padding: 5%;
+    justify-content: space-evenly;
+  }
+  #conception pre {
+    align-items: center;
+  }
+  #conception p {
+    text-align: center;
+  }
+  #whyus .reasonCards {
+    display: unset;
+    display: grid;
+    width: 80%;
+    grid-template-columns: repeat(2, 0.5fr);
+    grid-template-rows: repeat(2, 0.5fr);
+  }
+  #whyus .reasonCards .reasonCard {
+    height: 150px;
+  }
+  #whyus .conteinerOfWhyus h4 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 700px) {
+  #whyus .reasonCards .reasonSpan {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+  }
+  .conteinerOfWhyus h4 {
+    font-size: 16px;
+  }
+}
+@media (max-width: 450px) {
+  #whyus .conteinerOfWhyus h4 {
+    font-size: 14px;
+  }
+  #whyus .conteinerOfWhyus p {
+    font-size: 10px;
+  }
+  #whyus .reasonCards .reasonSpan {
+    text-align: center;
+    font-size: 10px;
+    color: white;
+  }
+}/*# sourceMappingURL=component.css.map */

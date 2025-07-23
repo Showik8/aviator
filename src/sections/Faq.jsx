@@ -3,7 +3,7 @@ import planeIcon from "../assets/planeIcon.png";
 import secondIcon from "../assets/secondIcon.png";
 import patent from "../assets/patent.png";
 
-import "../styles/faq.sass";
+import "../../css/component.css";
 
 function FAQ() {
   const [expandedQuestion, setExpandedQuestion] = useState(null);

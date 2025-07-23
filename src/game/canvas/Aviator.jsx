@@ -54,7 +54,7 @@ const Aviator = ({ multiplier, setMultiplier }) => {
         <div className="flight-path"></div>
         {multiplier && (
           <div ref={multiplierRef} className="multiplier">
-            {gameState != "loading" && <h3>{multiplier}</h3>}
+            {gameState != "loading" && <span>{multiplier}</span>}
           </div>
         )}
         <canvas ref={canvasRef} id="aviator"></canvas>

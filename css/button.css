@@ -1,0 +1,51 @@
+.outlined {
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  color: white;
+  background-color: initial;
+  border: 1px solid white;
+  cursor: pointer;
+  transition: padding 0.3s ease, background-color 0.2s ease, transform 0.2s ease-in-out;
+}
+.outlined a {
+  padding: 1rem 2rem;
+  line-height: 1.4em;
+  font-size: 18px;
+}
+.outlined:hover {
+  border-color: hsl(3, 58%, 47%);
+}
+
+.primary {
+  background-color: hsl(3, 58%, 47%);
+  padding: 1.4rem 5rem;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  transition: padding 0.3s ease, background-color 0.2s ease, transform 0.2s ease-in-out;
+}
+.primary:hover {
+  background-color: hsl(3, 58%, 34%);
+  transform: scale(1.05);
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: white;
+}
+
+@media (max-width: 450px) {
+  .outlined {
+    padding: unset;
+  }
+  a {
+    padding: 0.5rem;
+  }
+  .primary {
+    padding: 1rem 2.4rem;
+  }
+}/*# sourceMappingURL=button.css.map */
