@@ -1,12 +1,29 @@
-# React + Vite
+#Aviator-Crash-Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Just For Fun
 
-Currently, two official plugins are available:
+A simple and interesting web application that combines Game and Web Development. The idea of the game is as follows: the player places a bet, and the probability of winning depends on a randomly chosen number and the multiplier reached by the airplane.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project uses
+react.js
+Canva
+React-router-dom
+React-Hot-Toast
+Zustand
 
-## Expanding the ESLint configuration
+You can see the website link:
+https://aviator-kohl.vercel.app/
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+You can try the demo version of the game:
+https://aviator-kohl.vercel.app/game
+
+#Installation
+```bash
+git clone https://github.com/yourusername/aviator-game.git
+cd aviator-game
+npm install
+npm start
+npm run dev
+```
+
+YOU CAN PLAY ON http://localhost:3000
